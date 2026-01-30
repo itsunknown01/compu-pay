@@ -30,6 +30,9 @@ RUN pnpm install --prod --frozen-lockfile --prefer-offline || pnpm install --pro
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 
+# Generate Prisma Client for production
+RUN pnpm exec prisma generate
+
 EXPOSE 3000
 
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/server.js"]
