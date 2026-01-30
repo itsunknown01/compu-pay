@@ -124,7 +124,6 @@ function SynapseConnections() {
       for (let i = 0; i < layer1.count; i++) {
         for (let j = 0; j < layer2.count; j++) {
           if (Math.random() > 0.3) {
-            
             const x1 = -width1 / 2 + i * spacing1;
             const x2 = -width2 / 2 + j * spacing2;
             conns.push({
@@ -145,8 +144,7 @@ function SynapseConnections() {
         const points = [conn.start, conn.end];
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         return (
-          
-          <line key={i} {...({ geometry } as any)}>
+          <line key={i} geometry={geometry}>
             <lineBasicMaterial color="#3b82f6" transparent opacity={0.2} />
           </line>
         );

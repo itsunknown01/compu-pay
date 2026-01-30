@@ -91,8 +91,7 @@ function Connections() {
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
         return (
-          
-          <line key={i} {...({ geometry } as any)}>
+          <line key={i} geometry={geometry}>
             <lineBasicMaterial color="#3b82f6" transparent opacity={0.3} />
           </line>
         );

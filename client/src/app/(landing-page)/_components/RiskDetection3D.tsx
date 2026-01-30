@@ -86,11 +86,9 @@ function RiskGrid() {
     }
   });
 
-  
   const gridLines = useMemo(() => {
     const lines: Array<{ start: THREE.Vector3; end: THREE.Vector3 }> = [];
 
-    
     for (let y = -2; y <= 2; y += 2) {
       lines.push({
         start: new THREE.Vector3(-3, y, 0),
@@ -98,7 +96,6 @@ function RiskGrid() {
       });
     }
 
-    
     for (let x = -3; x <= 3; x += 3) {
       lines.push({
         start: new THREE.Vector3(x, -2, 0),
@@ -115,8 +112,7 @@ function RiskGrid() {
         const points = [line.start, line.end];
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         return (
-          
-          <line key={i} {...({ geometry } as any)}>
+          <line key={i} geometry={geometry}>
             <lineBasicMaterial color="#3b82f6" transparent opacity={0.2} />
           </line>
         );
