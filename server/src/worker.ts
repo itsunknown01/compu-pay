@@ -6,31 +6,31 @@ import { RiskEngine } from "./core/risk-engine";
 import dotenv from "dotenv";
 dotenv.config();
 
-const connection = {
-  url: process.env.REDIS_URL || "redis://127.0.0.1:6379",
-};
+import IORedis from "ioredis";
+
+const connection = new IORedis(
+  process.env.REDIS_URL || "redis://127.0.0.1:6379",
+  {
+    maxRetriesPerRequest: null,
+  },
+);
 
 const worker = new Worker(
   "payroll-queue",
   async (job) => {
     console.log(`Processing job for PayRun: ${job.data.payRunId}`);
 
-    
     const tenantId = String(job.data.tenantId);
     const payRunId = String(job.data.payRunId);
 
     try {
-      
       const employees = await prisma.employee.findMany({
         where: { tenantId },
       });
 
-      
       const items: any[] = [];
 
-      
       for (const emp of employees) {
-        
         const salary = Number(emp.salaryAmount);
         const result = calculateNetPay(salary, emp.taxStatus);
 
@@ -43,17 +43,10 @@ const worker = new Worker(
         });
       }
 
-      
-      
       await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-        
         await tx.payRunItem.deleteMany({
           where: { payRunId },
         });
-
-        
-        
-        
 
         await tx.payRunItem.createMany({
           data: items,
@@ -65,10 +58,8 @@ const worker = new Worker(
         });
       });
 
-      
       await RiskEngine.analyze(payRunId, tenantId);
 
-      
       await RiskEngine.analyze(payRunId, tenantId);
 
       console.log(`Job completed for PayRun: ${payRunId}`);
