@@ -1,0 +1,193 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Phase 1: Identity & Tenancy
+
+model Tenant {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  users     Membership[]
+  employees Employee[]
+  payRuns   PayRun[]
+
+  @@map("tenants")
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String       @map("password_hash")
+  createdAt    DateTime     @default(now()) @map("created_at")
+
+  memberships  Membership[]
+
+  @@map("users")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  VIEWER
+}
+
+model Membership {
+  userId   String @map("user_id")
+  tenantId String @map("tenant_id")
+  role     Role   @default(MEMBER)
+
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tenant   Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+
+  @@id([userId, tenantId])
+  @@map("memberships")
+}
+
+// Phase 2: Payroll Core
+
+enum TaxStatus {
+  STANDARD
+  EXEMPT
+  // Add others as needed
+}
+
+model Employee {
+  id           String    @id @default(uuid())
+  tenantId     String    @map("tenant_id")
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  email        String
+  salaryAmount Decimal   @map("salary_amount") @db.Decimal(10, 2)
+  taxStatus    TaxStatus @default(STANDARD) @map("tax_status")
+
+  tenant      Tenant      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  payRunItems PayRunItem[]
+
+  @@map("employees")
+}
+
+enum PayRunStatus {
+  DRAFT
+  QUEUED // Added for Phase 3 Async
+  PREVIEWED
+  REVIEWED
+  APPROVED
+}
+
+model PayRun {
+  id          String       @id @default(uuid())
+  tenantId    String       @map("tenant_id")
+  periodStart DateTime     @map("period_start") @db.Date
+  periodEnd   DateTime     @map("period_end") @db.Date
+  status      PayRunStatus @default(DRAFT)
+  
+  tenant      Tenant       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  items       PayRunItem[]
+  risks       Risk[]
+
+  @@index([tenantId])
+  @@index([tenantId, status])
+  @@map("pay_runs")
+}
+
+model PayRunItem {
+  payRunId      String  @map("pay_run_id")
+  employeeId    String  @map("employee_id")
+  grossPay      Decimal @map("gross_pay") @db.Decimal(10, 2)
+  taxDeductions Decimal @map("tax_deductions") @db.Decimal(10, 2)
+  netPay        Decimal @map("net_pay") @db.Decimal(10, 2)
+
+  payRun   PayRun   @relation(fields: [payRunId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@id([payRunId, employeeId])
+  @@map("pay_run_items")
+}
+
+model Risk {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  payRunId        String   @map("pay_run_id")
+  type            String   // VARIANCE, MISSING_DATA, COMPLIANCE
+  severity        String   // LOW, MEDIUM, HIGH, CRITICAL
+  explanation     String
+  suggestedAction String?  @map("suggested_action")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  payRun          PayRun   @relation(fields: [payRunId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([payRunId])
+  @@map("risks")
+}
+
+model ComplianceRule {
+  id            String   @id @default(uuid())
+  tenantId      String   @map("tenant_id")
+  name          String
+  description   String?
+  changes       Json     // e.g. { "taxRate": 0.35 }
+  effectiveDate DateTime @map("effective_date")
+  status        String   // DRAFT, ACTIVE, ARCHIVED
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  simulations   Simulation[]
+
+  @@index([tenantId])
+  @@map("compliance_rules")
+}
+
+model Simulation {
+  id            String   @id @default(uuid())
+  ruleId        String   @map("rule_id")
+  payRunId      String   @map("pay_run_id")
+
+  results       Json     // e.g. { "totalCostDelta": 500, "impactedCount": 10 }
+  aiSummary     String?  @map("ai_summary") // Human-readable explanation
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  rule          ComplianceRule @relation(fields: [ruleId], references: [id])
+  
+  @@map("simulations")
+}
+
+model AuditLog {
+  id           String   @id @default(uuid())
+  tenantId     String   @map("tenant_id")
+  userId       String?  @map("user_id") // Nullable if system action
+  action       String   // PAYROLL_APPROVE, RULE_CREATE
+  resourceType String   @map("resource_type") // PAYRUN, RULE
+  resourceId   String   @map("resource_id")
+  details      Json?
+  ipAddress    String?  @map("ip_address")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+
+
+  @@index([tenantId])
+  @@index([resourceId])
+
+  @@map("audit_logs")
+}
+
+model AITrace {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  modelName       String   @map("model_name") // e.g., "gpt-4-turbo"
+  promptTemplate  String   @map("prompt_template")
+  inputContext    Json     @map("input_context")
+  output          Json
+  confidenceScore Float    @map("confidence_score")
+  latencyMs       Int      @map("latency_ms")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@index([tenantId])
+  @@map("ai_traces")
+}

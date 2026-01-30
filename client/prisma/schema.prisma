@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  HR
+  EMPLOYEE
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(EMPLOYEE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee
+  auditLogs AuditLogs[]
+}
+
+model Employee {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  firstName String
+  lastName  String
+  salary    Int
+  department String
+  position   String
+  region     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payroll Payroll[]
+}
+
+enum PayrollStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model Payroll {
+  id        String   @id @default(uuid())
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  grossPay   Int
+  tax        Int
+  netPay     Int
+  payDate    DateTime
+  status     PayrollStatus @default(PENDING)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Tax {
+  id        String   @id @default(uuid())
+  region    String
+  type      String
+  rate      Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLogs {
+  id        String   @id @default(uuid())   
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  action    String
+  metadata  Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
