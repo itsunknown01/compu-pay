@@ -21,6 +21,9 @@ FROM node:18-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 
+# Install OpenSSL for Prisma
+RUN apk add --no-cache openssl
+
 # Enable pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
