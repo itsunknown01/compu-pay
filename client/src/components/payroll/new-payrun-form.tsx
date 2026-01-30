@@ -1,18 +1,18 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import axios, { AxiosError } from "axios";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import axios from "axios";
+import * as z from "zod";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -27,16 +27,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const formSchema = z
   .object({
-    periodStart: z.date({
-      required_error: "A start date is required.",
-    }),
-    periodEnd: z.date({
-      required_error: "An end date is required.",
-    }),
+    periodStart: z.date(),
+    periodEnd: z.date(),
   })
   .refine((data) => data.periodEnd > data.periodStart, {
     message: "End date must be after start date.",
@@ -64,10 +60,11 @@ export function NewPayrunForm() {
 
       toast.success("Payrun created successfully");
       router.push(`/dashboard/payruns/${response.data.id}`);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
+      const axiosError = error as AxiosError<{ error: string }>;
       toast.error(
-        error.response?.data?.error ||
+        axiosError.response?.data?.error ||
           "Failed to create payrun. Please try again.",
       );
     } finally {
