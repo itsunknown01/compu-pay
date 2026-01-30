@@ -90,7 +90,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
       className="py-16 lg:py-24 relative overflow-hidden"
       aria-labelledby="services-heading"
     >
-      {/* Animated Background */}
+      {}
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-3xl"
@@ -114,7 +114,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
+          {}
           <ScrollReveal direction="up" delay={200}>
             <div className="text-center mb-12 lg:mb-16">
               <motion.h2
@@ -141,7 +141,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
             </div>
           </ScrollReveal>
 
-          {/* Services Grid */}
+          {}
           <motion.div
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
             variants={containerVariants}
@@ -184,7 +184,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
                       }
                     }}
                   >
-                    {/* Animated Background Gradient */}
+                    {}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"
                       initial={{ opacity: 0 }}
@@ -268,7 +268,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
                         {service.description}
                       </CardDescription>
 
-                      {/* Progress */}
+                      {}
                       <div className="mb-4">
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-xs text-muted-foreground">
@@ -286,7 +286,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
                         />
                       </div>
 
-                      {/* Features */}
+                      {}
                       <div className="grid grid-cols-2 gap-2 mb-4">
                         {service.features.map((feature, featureIndex) => (
                           <motion.div
@@ -312,7 +312,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
                         ))}
                       </div>
 
-                      {/* CTA */}
+                      {}
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -327,7 +327,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
                           }`}
                           aria-label={`Learn more about ${service.title}`}
                           onClick={(e) => {
-                            e.stopPropagation(); // Prevent triggering the card click
+                            e.stopPropagation(); 
                             onOpen("service_detail", {
                               service: { ...service, icon: Icon },
                             });
@@ -344,7 +344,7 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
                       </motion.div>
                     </CardContent>
 
-                    {/* Selection Indicator */}
+                    {}
                     <AnimatePresence>
                       {isSelected && (
                         <motion.div
@@ -365,14 +365,14 @@ export default function ServiceSection({ data }: ServiceSectionProps) {
             })}
           </motion.div>
 
-          {/* Selected Service Details */}
+          {}
           <ScrollReveal direction="up" delay={800}>
             <motion.div
               className="bg-gradient-to-r from-muted/30 to-muted/50 rounded-2xl p-6 lg:p-8 border border-border/50 backdrop-blur-sm relative overflow-hidden"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Animated Background Elements */}
+              {}
               <motion.div
                 className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}

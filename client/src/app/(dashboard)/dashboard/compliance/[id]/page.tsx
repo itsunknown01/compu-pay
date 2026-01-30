@@ -91,7 +91,7 @@ export default function ComplianceRuleDetailsPage() {
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
-      {/* Header */}
+      {}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-4">
           <Button variant="ghost" size="icon" onClick={() => router.back()}>
@@ -145,7 +145,7 @@ export default function ComplianceRuleDetailsPage() {
 
       <Separator />
 
-      {/* Rule Details */}
+      {}
       <Card>
         <CardHeader>
           <CardTitle>Rule Configuration</CardTitle>
@@ -165,7 +165,7 @@ export default function ComplianceRuleDetailsPage() {
         </CardContent>
       </Card>
 
-      {/* Simulation Results */}
+      {}
       {simulationResult && (
         <SimulationDeltaView simulation={simulationResult} />
       )}

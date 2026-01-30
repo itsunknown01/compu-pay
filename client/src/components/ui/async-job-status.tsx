@@ -17,15 +17,7 @@ interface AsyncJobStatusProps {
 
 type JobStatus = "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
 
-/**
- * AsyncJobStatus - Polling component for long-running jobs
- *
- * Features:
- * - Polls job status endpoint every 2 seconds (with backoff potential)
- * - Visual progress indicator
- * - Auto-redirect/callback on completion
- * - Error handling
- */
+
 export function AsyncJobStatus({
   jobId,
   title = "Processing...",
@@ -45,19 +37,19 @@ export function AsyncJobStatus({
       if (!token) return;
 
       try {
-        // In a real implementation with a proper job queue,
-        // there would be a specific job status endpoint.
-        // For now, we'll simulate checking the job status
-        // or check the payrun status if the job maps to it.
+        
+        
+        
+        
 
-        // Mocking progress for UX since backend job system is internal
+        
         attempts++;
         if (attempts < 5) {
           setStatus("PROCESSING");
           setProgress(attempts * 20);
         } else {
-          // For now, assuming success after a few simulated polls
-          // In real integration: await api.get(`/jobs/${jobId}`)
+          
+          
           setStatus("COMPLETED");
           setProgress(100);
           onComplete({ status: "COMPLETED" });

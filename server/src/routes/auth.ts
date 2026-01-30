@@ -7,7 +7,7 @@ import { Prisma } from "@prisma/client";
 
 const router = Router();
 
-// Validation Schemas
+
 const registerSchema = z.object({
   tenantName: z.string().min(1),
   email: z.string().email(),
@@ -20,7 +20,7 @@ const loginSchema = z.object({
   tenantId: z.string().optional(),
 });
 
-// Register
+
 router.post("/register", async (req: Request, res: Response) => {
   try {
     const { tenantName, email, password } = registerSchema.parse(req.body);
@@ -64,14 +64,14 @@ router.post("/register", async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      // Cast to any to avoid TS issues with .errors property in some versions
+      
       return res.status(400).json({ errors: (error as any).errors });
     }
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// Login
+
 router.post("/login", async (req: Request, res: Response) => {
   try {
     const { email, password } = loginSchema.parse(req.body);

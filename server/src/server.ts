@@ -7,8 +7,8 @@ const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   try {
-    // TODO: potential DB connection check here if manual connection needed
-    // Prisma connects lazily usually, or we can explicit connect.
+    
+    
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/tooltip";
 
 interface ConfidenceIndicatorProps {
-  score: number; // 0 to 1
+  score: number; 
   className?: string;
   showLabel?: boolean;
 }
@@ -18,7 +18,7 @@ export function ConfidenceIndicator({
   className,
   showLabel = true,
 }: ConfidenceIndicatorProps) {
-  // Determine color and label based on score
+  
   let colorClass = "text-red-500";
   let bgClass = "bg-red-500";
   let label = "Low Confidence";
@@ -58,7 +58,7 @@ export function ConfidenceIndicator({
         </Tooltip>
       </TooltipProvider>
 
-      {/* Visual meter */}
+      {}
       <div className="h-1.5 w-16 bg-muted rounded-full overflow-hidden">
         <div
           className={cn(

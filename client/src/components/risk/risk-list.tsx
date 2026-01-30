@@ -18,7 +18,7 @@ export function RiskList({ risks }: RiskListProps) {
     );
   }
 
-  // Sort by severity priority
+  
   const severityOrder: Record<RiskSeverity, number> = {
     CRITICAL: 0,
     HIGH: 1,

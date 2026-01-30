@@ -71,14 +71,14 @@ export default function HeroSection({ data }: HeroSectionProps) {
         className="relative pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden"
         aria-labelledby="hero-heading"
       >
-        {/* Background Pattern */}
+        {}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" />
         <div className="absolute inset-0 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/10),transparent)]" />
 
         <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Content */}
+              {}
               <div className="text-center lg:text-left space-y-8">
                 <ScrollReveal direction="up" delay={200}>
                   <h1
@@ -103,7 +103,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                   </p>
                 </ScrollReveal>
 
-                {/* Benefits */}
+                {}
                 <ScrollReveal direction="up" delay={600}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {benefits.map((benefit, index) => (
@@ -124,7 +124,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                   </div>
                 </ScrollReveal>
 
-                {/* CTA Buttons */}
+                {}
                 <ScrollReveal direction="up" delay={1000}>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <GetStartedButton />
@@ -132,7 +132,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                   </div>
                 </ScrollReveal>
 
-                {/* Stats */}
+                {}
                 <ScrollReveal direction="up" delay={1200}>
                   <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     {stats.map((stat, index) => {
@@ -170,12 +170,12 @@ export default function HeroSection({ data }: HeroSectionProps) {
                 </ScrollReveal>
               </div>
 
-              {/* Visual Element */}
+              {}
               <ScrollReveal direction="right" delay={800}>
                 <div className="relative group">
                   <div className="relative z-10 bg-card border border-border rounded-2xl p-6 lg:p-8 shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
                     <div className="space-y-6">
-                      {/* Header */}
+                      {}
                       <div className="flex items-center justify-between">
                         <h3 className="text-lg font-semibold text-foreground">
                           PayrollAI Dashboard
@@ -196,7 +196,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                         </div>
                       </div>
 
-                      {/* Mock Dashboard Content */}
+                      {}
                       <div className="space-y-4">
                         <div className="flex items-center justify-between p-3 bg-muted/50 rounded-lg hover:bg-muted/70 transition-colors duration-300">
                           <div className="flex items-center space-x-3">
@@ -236,7 +236,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                           </div>
                         </div>
 
-                        {/* AI Analytics Chart */}
+                        {}
                         <div className="h-32 rounded border border-muted overflow-hidden hover:border-primary/30 transition-colors duration-300">
                           <div className="p-2 bg-muted/20 border-b border-muted">
                             <div className="text-xs font-medium">
@@ -325,7 +325,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                     </div>
                   </div>
 
-                  {/* Decorative Elements */}
+                  {}
                   <div
                     className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl animate-pulse"
                     aria-hidden="true"

@@ -9,18 +9,10 @@ interface ErrorProps {
   reset: () => void;
 }
 
-/**
- * DashboardError - Route-level error boundary for dashboard
- *
- * Features:
- * - Catches and displays errors gracefully
- * - Provides retry functionality
- * - Logs error for debugging
- * - Never exposes sensitive error details to user
- */
+
 export default function DashboardError({ error, reset }: ErrorProps) {
   useEffect(() => {
-    // Log error to error reporting service in production
+    
     console.error("Dashboard error:", error);
   }, [error]);
 
@@ -51,7 +43,7 @@ export default function DashboardError({ error, reset }: ErrorProps) {
           </Button>
         </div>
 
-        {/* Error digest for support reference (non-sensitive) */}
+        {}
         {error.digest && (
           <p className="text-xs text-muted-foreground">
             Error ID: {error.digest}

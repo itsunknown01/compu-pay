@@ -38,6 +38,6 @@ export function useAuditLogs() {
 
       return data;
     },
-    placeholderData: (previousData) => previousData, // Keep previous data while fetching new page
+    placeholderData: (previousData) => previousData, 
   });
 }

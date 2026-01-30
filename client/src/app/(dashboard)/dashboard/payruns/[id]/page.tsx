@@ -6,10 +6,7 @@ interface PageProps {
   }>;
 }
 
-/**
- * PayrunDetailsPage - Payrun detail view
- * Server Component
- */
+
 export default async function PayrunDetailsPage({ params }: PageProps) {
   const { id } = await params;
   return <PayrunDetailsView payRunId={id} />;

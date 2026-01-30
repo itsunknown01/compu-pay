@@ -10,14 +10,7 @@ interface SimulationDeltaViewProps {
   simulation: Simulation;
 }
 
-/**
- * SimulationDeltaView - Before/After comparison for rule simulations
- *
- * Shows:
- * - Total cost delta
- * - Number of impacted employees
- * - Visual indicators (up/down)
- */
+
 export function SimulationDeltaView({ simulation }: SimulationDeltaViewProps) {
   const results = simulation.results || {};
   const totalCostDelta = results.totalCostDelta || 0;
@@ -37,7 +30,7 @@ export function SimulationDeltaView({ simulation }: SimulationDeltaViewProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        {/* Cost Delta */}
+        {}
         <div className="flex items-center justify-between p-4 rounded-lg bg-muted/50">
           <div className="flex items-center gap-3">
             {isPositive ? (
@@ -57,7 +50,7 @@ export function SimulationDeltaView({ simulation }: SimulationDeltaViewProps) {
           <ArrowRight className="h-5 w-5 text-muted-foreground" />
         </div>
 
-        {/* Impacted Employees */}
+        {}
         <div className="flex items-center justify-between p-4 rounded-lg bg-muted/50">
           <div className="flex items-center gap-3">
             <Users className="h-6 w-6 text-primary" />
@@ -70,7 +63,7 @@ export function SimulationDeltaView({ simulation }: SimulationDeltaViewProps) {
           </div>
         </div>
 
-        {/* Additional Results */}
+        {}
         {Object.keys(results).filter(
           (k) => !["totalCostDelta", "impactedCount"].includes(k),
         ).length > 0 && (
@@ -92,7 +85,7 @@ export function SimulationDeltaView({ simulation }: SimulationDeltaViewProps) {
           </div>
         )}
       </CardContent>
-      {/* AI Explanation (Phase 7: AI-Powered Compliance Simulator) */}
+      {}
       {(simulation.explanation || simulation.confidence !== undefined) && (
         <div className="border-t bg-muted/20 p-6">
           <AIExplanationPanel

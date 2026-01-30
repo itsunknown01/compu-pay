@@ -9,7 +9,7 @@ export interface DashboardStats {
 }
 
 export function useDashboardStats() {
-  const { data, isLoading, error } = usePayruns(1, 100); // Fetching more to get better stats representation locally
+  const { data, isLoading, error } = usePayruns(1, 100); 
 
   const stats: DashboardStats = useMemo(() => {
     if (!data?.data) {

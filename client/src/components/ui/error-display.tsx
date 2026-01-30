@@ -8,14 +8,7 @@ interface ErrorDisplayProps {
   onRetry?: () => void;
 }
 
-/**
- * ErrorDisplay - Reusable error message component
- *
- * Features:
- * - Alert styling
- * - Optional retry button
- * - Customizable title
- */
+
 export function ErrorDisplay({
   title = "Error",
   message,

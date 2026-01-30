@@ -19,7 +19,7 @@ export function PayrunComplianceView({ payRunId }: PayrunComplianceViewProps) {
   const handleSimulate = async () => {
     try {
       const result = await runSimulation.mutateAsync({
-        ruleId: "ALL", // Default to running all active rules
+        ruleId: "ALL", 
         payRunId,
       });
       setActiveSimulation(result);
@@ -35,7 +35,7 @@ export function PayrunComplianceView({ payRunId }: PayrunComplianceViewProps) {
 
   return (
     <div className="container max-w-5xl py-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Header */}
+      {}
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" asChild>
           <Link href={`/dashboard/payruns/${payRunId}`}>
@@ -53,7 +53,7 @@ export function PayrunComplianceView({ payRunId }: PayrunComplianceViewProps) {
         </div>
       </div>
 
-      {/* Action Area */}
+      {}
       {!activeSimulation && (
         <div className="flex flex-col items-center justify-center p-12 border border-dashed rounded-lg bg-muted/5">
           <div className="text-center space-y-4 max-w-lg">
@@ -84,7 +84,7 @@ export function PayrunComplianceView({ payRunId }: PayrunComplianceViewProps) {
         </div>
       )}
 
-      {/* Results */}
+      {}
       {activeSimulation && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">

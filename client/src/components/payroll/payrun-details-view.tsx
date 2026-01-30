@@ -54,7 +54,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
   const handleJobComplete = () => {
     setJobId(null);
     toast.success("Calculation complete!");
-    // Trigger re-fetch logic handled by useAsyncJob or simply invalidate queries via the mutation hooks
+    
   };
 
   if (isLoading) {
@@ -89,7 +89,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
 
   return (
     <div className="space-y-8 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Header */}
+      {}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-4">
           <Button variant="ghost" size="icon" onClick={() => router.back()}>
@@ -132,7 +132,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
         <ImmutableNotice message="This payrun has been approved and is locked for processing." />
       )}
 
-      {/* Async Job Status */}
+      {}
       {jobId && (
         <AsyncJobStatus
           jobId={jobId}
@@ -143,7 +143,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
         />
       )}
 
-      {/* Summary Cards */}
+      {}
       <div className="grid gap-6 md:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
@@ -184,7 +184,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
         </Card>
       </div>
 
-      {/* Risk Alert Section */}
+      {}
       <div className="rounded-lg border p-4 bg-muted/30">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -207,7 +207,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
 
       <Separator />
 
-      {/* Preview Section */}
+      {}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-semibold flex items-center gap-2">
@@ -220,7 +220,7 @@ export function PayrunDetailsView({ payRunId }: PayrunDetailsViewProps) {
         payrun.status === "REVIEWED" ||
         payrun.status === "APPROVED" ? (
           <PayrollPreviewTable
-            data={[{ id: 1 }]} // Mock data trigger
+            data={[{ id: 1 }]} 
             loading={false}
           />
         ) : (

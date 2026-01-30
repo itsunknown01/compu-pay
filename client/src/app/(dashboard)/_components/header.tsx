@@ -8,15 +8,13 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Bell } from "lucide-react";
 import { usePathname } from "next/navigation";
 
-/**
- * Get page title from pathname
- */
+
 function getPageTitle(pathname: string): string {
   const segments = pathname.split("/").filter(Boolean);
 
   if (segments.length <= 1) return "Dashboard";
 
-  // Map route segments to readable titles
+  
   const titles: Record<string, string> = {
     payruns: "Payruns",
     employees: "Employees",
@@ -28,7 +26,7 @@ function getPageTitle(pathname: string): string {
 
   const lastSegment = segments[segments.length - 1];
 
-  // Check if it's a dynamic segment (UUID-like)
+  
   if (lastSegment.length > 20) {
     const parentSegment = segments[segments.length - 2];
     return titles[parentSegment] || "Details";
@@ -37,16 +35,7 @@ function getPageTitle(pathname: string): string {
   return titles[lastSegment] || "Dashboard";
 }
 
-/**
- * DashboardHeader - Top navigation bar for the dashboard
- *
- * Features:
- * - Dynamic page title based on current route
- * - Sidebar toggle for mobile/collapsed states
- * - Theme toggle
- * - Notifications placeholder
- * - Sticky with backdrop blur
- */
+
 export default function DashboardHeader() {
   const pathname = usePathname();
   const pageTitle = getPageTitle(pathname);

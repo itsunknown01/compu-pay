@@ -49,13 +49,7 @@ interface RuleBuilderProps {
   initialData?: Partial<RuleFormValues>;
 }
 
-/**
- * RuleBuilder - Form for creating/editing compliance rules
- *
- * Features:
- * - Basic metadata (Name, Description, Effective Date)
- * - JSON editor for rule definition (simulated with validated textarea)
- */
+
 export function RuleBuilder({ initialData }: RuleBuilderProps) {
   const router = useRouter();
   const createRule = useCreateComplianceRule();
@@ -92,7 +86,7 @@ export function RuleBuilder({ initialData }: RuleBuilderProps) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="grid gap-6 md:grid-cols-2">
-            {/* Left Column: Metadata */}
+            {}
             <div className="space-y-6">
               <FormField
                 control={form.control}
@@ -175,7 +169,7 @@ export function RuleBuilder({ initialData }: RuleBuilderProps) {
               />
             </div>
 
-            {/* Right Column: JSON Editor */}
+            {}
             <div className="space-y-6">
               <FormField
                 control={form.control}

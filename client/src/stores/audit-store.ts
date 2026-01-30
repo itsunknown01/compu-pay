@@ -19,6 +19,6 @@ export const useAuditStore = create<AuditState>((set) => ({
   page: 1,
   filters: {},
   setPage: (page) => set({ page }),
-  setFilters: (filters) => set({ filters, page: 1 }), // Reset to page 1 on filter change
+  setFilters: (filters) => set({ filters, page: 1 }), 
   reset: () => set({ page: 1, filters: {} }),
 }));

@@ -29,7 +29,7 @@ export function AIInsightsWidget() {
 
   return (
     <div className="grid gap-4 md:grid-cols-7 animate-in fade-in slide-in-from-bottom-2 duration-700">
-      {/* System Health Score Card */}
+      {}
       <Card className="md:col-span-2 bg-gradient-to-br from-indigo-50 to-white dark:from-indigo-950/20 dark:to-background border-indigo-100 dark:border-indigo-900/50 shadow-sm relative overflow-hidden group">
         <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,transparent)] dark:[mask-image:linear-gradient(0deg,rgba(255,255,255,0.1),transparent)] pointer-events-none" />
 
@@ -93,7 +93,7 @@ export function AIInsightsWidget() {
         </CardContent>
       </Card>
 
-      {/* Insights List Card */}
+      {}
       <Card className="md:col-span-5 shadow-sm border-border/60">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-lg flex items-center gap-2 font-semibold">

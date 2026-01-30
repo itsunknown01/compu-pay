@@ -124,7 +124,7 @@ function SynapseConnections() {
       for (let i = 0; i < layer1.count; i++) {
         for (let j = 0; j < layer2.count; j++) {
           if (Math.random() > 0.3) {
-            // Not all connections
+            
             const x1 = -width1 / 2 + i * spacing1;
             const x2 = -width2 / 2 + j * spacing2;
             conns.push({
@@ -145,7 +145,7 @@ function SynapseConnections() {
         const points = [conn.start, conn.end];
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         return (
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          
           <line key={i} {...({ geometry } as any)}>
             <lineBasicMaterial color="#3b82f6" transparent opacity={0.2} />
           </line>
@@ -194,7 +194,7 @@ function BrainStructure() {
 
   return (
     <group ref={brainRef}>
-      {/* Left hemisphere */}
+      {}
       <Sphere args={[2, 32, 32]} position={[-1.2, 0, 0]}>
         <MeshDistortMaterial
           color="#1e293b"
@@ -206,7 +206,7 @@ function BrainStructure() {
           wireframe
         />
       </Sphere>
-      {/* Right hemisphere */}
+      {}
       <Sphere args={[2, 32, 32]} position={[1.2, 0, 0]}>
         <MeshDistortMaterial
           color="#1e293b"

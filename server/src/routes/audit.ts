@@ -3,10 +3,10 @@ import prisma from "../utils/prisma";
 
 const router = Router();
 
-// List Audit Logs
+
 router.get("/logs", async (req: Request, res: Response) => {
   try {
-    const tenantId = req.tenantId as string; // Explicit cast
+    const tenantId = req.tenantId as string; 
     if (!tenantId)
       return res.status(400).json({ error: "Tenant context missing" });
 
@@ -14,7 +14,7 @@ router.get("/logs", async (req: Request, res: Response) => {
     const pageSize = parseInt(req.query.pageSize as string) || 20;
     const skip = (page - 1) * pageSize;
 
-    // Filters
+    
     const action = req.query.action as string;
     const resourceType = req.query.resourceType as string;
     const startDate = req.query.startDate as string;
@@ -53,7 +53,7 @@ router.get("/logs", async (req: Request, res: Response) => {
   }
 });
 
-// Get Single Audit Log
+
 router.get("/logs/:id", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);

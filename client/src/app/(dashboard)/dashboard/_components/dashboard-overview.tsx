@@ -17,20 +17,13 @@ import { AIInsightsWidget } from "@/components/dashboard/ai-insights-widget";
 import { StatsCard } from "@/components/dashboard/stats-card";
 import { useDashboardStats } from "@/hooks/use-dashboard-stats";
 
-/**
- * DashboardOverview - Client Component
- *
- * Orchestrates the dashboard view, combining:
- * 1. High-level statistics (handled by useDashboardStats)
- * 2. AI Insights Widget
- * 3. Recent Payruns list
- */
+
 export function DashboardOverview() {
   const { stats, isLoading } = useDashboardStats();
 
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Page Header */}
+      {}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-foreground">
@@ -48,7 +41,7 @@ export function DashboardOverview() {
         </Button>
       </header>
 
-      {/* Stats Grid */}
+      {}
       <section
         className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
         aria-label="Key Performance Indicators"
@@ -88,14 +81,14 @@ export function DashboardOverview() {
         />
       </section>
 
-      {/* Main Content Area */}
+      {}
       <div className="grid gap-6 lg:grid-cols-7">
-        {/* Left/Top: AI Insights (Full width on mobile, 5 cols on desktop to match widget design) */}
+        {}
         <div className="lg:col-span-7">
           <AIInsightsWidget />
         </div>
 
-        {/* Full Width: Recent Payruns */}
+        {}
         <section className="lg:col-span-7" aria-label="Recent Activity">
           <Card className="shadow-sm border-border/60">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">

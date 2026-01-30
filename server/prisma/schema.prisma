@@ -3,11 +3,10 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
-// Phase 1: Identity & Tenancy
 
 model Tenant {
   id        String   @id @default(uuid())
@@ -50,12 +49,12 @@ model Membership {
   @@map("memberships")
 }
 
-// Phase 2: Payroll Core
+
 
 enum TaxStatus {
   STANDARD
   EXEMPT
-  // Add others as needed
+  
 }
 
 model Employee {
@@ -75,7 +74,7 @@ model Employee {
 
 enum PayRunStatus {
   DRAFT
-  QUEUED // Added for Phase 3 Async
+  QUEUED 
   PREVIEWED
   REVIEWED
   APPROVED
@@ -115,8 +114,8 @@ model Risk {
   id              String   @id @default(uuid())
   tenantId        String   @map("tenant_id")
   payRunId        String   @map("pay_run_id")
-  type            String   // VARIANCE, MISSING_DATA, COMPLIANCE
-  severity        String   // LOW, MEDIUM, HIGH, CRITICAL
+  type            String   
+  severity        String   
   explanation     String
   suggestedAction String?  @map("suggested_action")
   createdAt       DateTime @default(now()) @map("created_at")
@@ -133,9 +132,9 @@ model ComplianceRule {
   tenantId      String   @map("tenant_id")
   name          String
   description   String?
-  changes       Json     // e.g. { "taxRate": 0.35 }
+  changes       Json     
   effectiveDate DateTime @map("effective_date")
-  status        String   // DRAFT, ACTIVE, ARCHIVED
+  status        String   
   createdAt     DateTime @default(now()) @map("created_at")
 
   simulations   Simulation[]
@@ -149,8 +148,8 @@ model Simulation {
   ruleId        String   @map("rule_id")
   payRunId      String   @map("pay_run_id")
 
-  results       Json     // e.g. { "totalCostDelta": 500, "impactedCount": 10 }
-  aiSummary     String?  @map("ai_summary") // Human-readable explanation
+  results       Json     
+  aiSummary     String?  @map("ai_summary") 
   createdAt     DateTime @default(now()) @map("created_at")
 
   rule          ComplianceRule @relation(fields: [ruleId], references: [id])
@@ -161,9 +160,9 @@ model Simulation {
 model AuditLog {
   id           String   @id @default(uuid())
   tenantId     String   @map("tenant_id")
-  userId       String?  @map("user_id") // Nullable if system action
-  action       String   // PAYROLL_APPROVE, RULE_CREATE
-  resourceType String   @map("resource_type") // PAYRUN, RULE
+  userId       String?  @map("user_id") 
+  action       String   
+  resourceType String   @map("resource_type") 
   resourceId   String   @map("resource_id")
   details      Json?
   ipAddress    String?  @map("ip_address")
@@ -180,7 +179,7 @@ model AuditLog {
 model AITrace {
   id              String   @id @default(uuid())
   tenantId        String   @map("tenant_id")
-  modelName       String   @map("model_name") // e.g., "gpt-4-turbo"
+  modelName       String   @map("model_name") 
   promptTemplate  String   @map("prompt_template")
   inputContext    Json     @map("input_context")
   output          Json

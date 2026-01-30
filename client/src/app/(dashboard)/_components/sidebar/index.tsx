@@ -19,16 +19,7 @@ import NavHeader from "./nav-header";
 import NavMain from "./nav-main";
 import NavUser from "./nav-user";
 
-/**
- * DashboardSidebar - Main navigation sidebar for the dashboard
- *
- * Navigation structure matches the CompuPay spec:
- * - Dashboard (overview)
- * - Payruns (payroll runs list)
- * - Employees
- * - Compliance
- * - Audit
- */
+
 export default function DashboardSidebar() {
   const data = {
     user: {

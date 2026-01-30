@@ -14,7 +14,7 @@ const ruleSchema = z.object({
   effectiveDate: z.string().datetime(),
 });
 
-// Create Rule
+
 router.post("/rules", async (req: Request, res: Response) => {
   try {
     const { name, description, changes, effectiveDate } = ruleSchema.parse(
@@ -36,7 +36,7 @@ router.post("/rules", async (req: Request, res: Response) => {
       },
     });
 
-    // Audit Log
+    
     const { logAction } = await import("../utils/audit");
     await logAction(
       tenantId as string,
@@ -57,7 +57,7 @@ router.post("/rules", async (req: Request, res: Response) => {
   }
 });
 
-// Run Simulation
+
 router.post("/rules/:id/simulate", async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -67,7 +67,7 @@ router.post("/rules/:id/simulate", async (req: Request, res: Response) => {
     if (!tenantId)
       return res.status(400).json({ error: "Tenant context missing" });
 
-    // Cast tenantId to string to maintain method signature compatibility
+    
     const simulation = await Simulator.simulate(
       String(id),
       String(payRunId),
@@ -81,7 +81,7 @@ router.post("/rules/:id/simulate", async (req: Request, res: Response) => {
   }
 });
 
-// Activate Rule
+
 router.put("/rules/:id/activate", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -94,7 +94,7 @@ router.put("/rules/:id/activate", async (req: Request, res: Response) => {
       data: { status: "ACTIVE" },
     });
 
-    // Audit
+    
     const { logAction } = await import("../utils/audit");
     await logAction(
       tenantId as string,
@@ -113,7 +113,7 @@ router.put("/rules/:id/activate", async (req: Request, res: Response) => {
   }
 });
 
-// Get Single Rule
+
 router.get("/rules/:id", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -133,7 +133,7 @@ router.get("/rules/:id", async (req: Request, res: Response) => {
   }
 });
 
-// List Rules
+
 router.get("/rules", async (req: Request, res: Response) => {
   try {
     const tenantId = req.tenantId;

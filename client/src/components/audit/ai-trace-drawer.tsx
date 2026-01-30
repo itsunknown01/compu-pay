@@ -19,7 +19,7 @@ import { Card } from "@/components/ui/card";
 interface AITraceDrawerProps {
   trigger?: React.ReactNode;
   traceId: string;
-  // Mock data props - in real app would fetch by ID
+  
   data?: {
     timestamp: string;
     model: string;
@@ -37,7 +37,7 @@ export function AITraceDrawer({
 }: AITraceDrawerProps) {
   const [copied, setCopied] = useState(false);
 
-  // Mock data if not provided
+  
   const data = initialData || {
     timestamp: new Date().toISOString(),
     model: "gpt-4-turbo-preview",
@@ -91,7 +91,7 @@ export function AITraceDrawer({
 
           <ScrollArea className="h-[50vh] px-4">
             <div className="space-y-6 pb-6">
-              {/* Confidence Metric */}
+              {}
               <Card className="p-4 bg-muted/20">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="text-sm font-medium">Confidence Score</h4>
@@ -102,7 +102,7 @@ export function AITraceDrawer({
                 <ConfidenceIndicator score={data.confidence} />
               </Card>
 
-              {/* Prompt Section */}
+              {}
               <div className="space-y-2">
                 <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                   System Prompt & Context
@@ -112,7 +112,7 @@ export function AITraceDrawer({
                 </div>
               </div>
 
-              {/* Response Section */}
+              {}
               <div className="space-y-2">
                 <h4 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                   Model Output

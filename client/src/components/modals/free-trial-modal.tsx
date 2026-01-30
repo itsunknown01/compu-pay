@@ -51,14 +51,14 @@ export default function FreeTrialModal() {
   const service = data?.service;
 
   const handleFreeTrialSubmit = (value: z.infer<typeof freeTrialFormSchema>) => {
-    // Here you would typically send this data to your backend
+    
     console.log({
       ...value,
       serviceTitle: service?.title,
     });
     toast.success("Free trial request submitted! We'll contact you shortly.");
     onClose();
-    // Reset the form after submission
+    
     form.reset();
   };
 

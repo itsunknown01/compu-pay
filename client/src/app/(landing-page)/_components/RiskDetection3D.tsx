@@ -47,7 +47,7 @@ function RiskCube({ position, severity }: RiskCubeProps) {
           opacity={0.8}
         />
       </Box>
-      {/* Alert glow */}
+      {}
       <Box args={[1.2, 1.2, 1.2]}>
         <meshBasicMaterial
           color={colorMap[severity]}
@@ -86,11 +86,11 @@ function RiskGrid() {
     }
   });
 
-  // Draw grid connections
+  
   const gridLines = useMemo(() => {
     const lines: Array<{ start: THREE.Vector3; end: THREE.Vector3 }> = [];
 
-    // Horizontal lines
+    
     for (let y = -2; y <= 2; y += 2) {
       lines.push({
         start: new THREE.Vector3(-3, y, 0),
@@ -98,7 +98,7 @@ function RiskGrid() {
       });
     }
 
-    // Vertical lines
+    
     for (let x = -3; x <= 3; x += 3) {
       lines.push({
         start: new THREE.Vector3(x, -2, 0),
@@ -115,7 +115,7 @@ function RiskGrid() {
         const points = [line.start, line.end];
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
         return (
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          
           <line key={i} {...({ geometry } as any)}>
             <lineBasicMaterial color="#3b82f6" transparent opacity={0.2} />
           </line>

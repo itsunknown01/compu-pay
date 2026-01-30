@@ -25,7 +25,7 @@ export default function ProductDetailModal() {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[700px] p-0 overflow-hidden">
-        {/* Hero Image Section */}
+        {}
         <div className="relative w-full h-48 sm:h-64">
           <Image
             src={product.image}
@@ -35,7 +35,7 @@ export default function ProductDetailModal() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
 
-          {/* Floating Badge */}
+          {}
           <div className="absolute top-4 left-4">
             <Badge
               variant="secondary"
@@ -45,7 +45,7 @@ export default function ProductDetailModal() {
             </Badge>
           </div>
 
-          {/* Floating Icon */}
+          {}
           <div className="absolute top-4 right-4 p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
             {product.icon && <product.icon className="h-6 w-6 text-gray-800" />}
           </div>
@@ -98,9 +98,9 @@ export default function ProductDetailModal() {
               <Button
                 className="w-full group relative overflow-hidden"
                 onClick={() => {
-                  // Close the current modal and open the product info request modal
+                  
                   onClose();
-                  // Small timeout to ensure smooth transition between modals
+                  
                   setTimeout(() => {
                     useModal.getState().onOpen("request_info", { product });
                   }, 100);

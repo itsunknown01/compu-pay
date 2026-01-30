@@ -13,7 +13,7 @@ export class InferenceEngine {
     riskType: string,
     context: any,
   ): Promise<AIAnalysisResult> {
-    // Mock AI Latency
+    
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const result: AIAnalysisResult = {
@@ -23,7 +23,7 @@ export class InferenceEngine {
       suggestedAction: "Review manually",
     };
 
-    // Traceability
+    
     await this.logTrace(
       tenantId,
       "risk-classifier-v1",
@@ -42,12 +42,12 @@ export class InferenceEngine {
     ruleName: string,
     impactData: any,
   ): Promise<string> {
-    // Mock AI Latency
+    
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     const summary = `Creating rule "${ruleName}" will increase total payroll cost by approx ${impactData.totalCostDelta} and affect ${impactData.impactedCount} employees.`;
 
-    // Traceability
+    
     await this.logTrace(
       tenantId,
       "impact-explainer-v1",

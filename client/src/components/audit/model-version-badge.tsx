@@ -10,7 +10,7 @@ export function ModelVersionBadge({
   version,
   className,
 }: ModelVersionBadgeProps) {
-  // Color coding based on model families (mock logic)
+  
   const isGPT4 = version.toLowerCase().includes("gpt-4");
   const isClaude = version.toLowerCase().includes("claude");
   const isFineTuned = version.toLowerCase().includes("ft:");

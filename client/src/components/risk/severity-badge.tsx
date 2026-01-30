@@ -27,9 +27,7 @@ const severityConfig: Record<
   },
 };
 
-/**
- * SeverityBadge - Color-coded badge for risk severity
- */
+
 export function SeverityBadge({ severity }: SeverityBadgeProps) {
   const config = severityConfig[severity] || {
     label: severity,

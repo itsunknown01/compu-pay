@@ -19,9 +19,7 @@ const statusConfig: Record<
   ARCHIVED: { label: "Archived", className: "bg-gray-500 hover:bg-gray-600" },
 };
 
-/**
- * RuleStatusBadge - Color-coded compliance rule status
- */
+
 export function RuleStatusBadge({ status }: RuleStatusBadgeProps) {
   const config = statusConfig[status] || {
     label: status,

@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function GetStartedButton() {
   const isAuthenticated = useIsAuthenticated();
 
-  // Determine the target URL based on authentication status
+  
   const targetUrl = isAuthenticated ? "/dashboard" : "/login";
 
   return (

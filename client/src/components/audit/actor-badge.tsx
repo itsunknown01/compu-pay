@@ -13,14 +13,7 @@ interface ActorBadgeProps {
   isSystem?: boolean;
 }
 
-/**
- * ActorBadge - Displays the user or system actor for an audit log
- *
- * Features:
- * - Avatar with initials fallback
- * - System badge for automated actions
- * - Tooltip friendly structure (can be wrapped)
- */
+
 export function ActorBadge({
   userId,
   name,

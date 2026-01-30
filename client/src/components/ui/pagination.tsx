@@ -16,15 +16,7 @@ interface PaginationProps {
   isLoading?: boolean;
 }
 
-/**
- * Pagination - Reusable pagination controls
- *
- * Features:
- * - First/last page buttons
- * - Previous/next buttons
- * - Page info display
- * - Disabled state during loading
- */
+
 export function Pagination({
   page,
   pageSize,

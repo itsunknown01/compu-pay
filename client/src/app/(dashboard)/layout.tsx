@@ -11,21 +11,7 @@ export const metadata = {
   description: "CompuPay Dashboard - Manage payroll, compliance, and audits",
 };
 
-/**
- * DashboardLayout - Protected dashboard shell layout
- *
- * Structure:
- * - AuthGuard (client-side validation)
- * - Sidebar (collapsible navigation)
- * - Main content area with header
- * - Footer
- *
- * Features:
- * - Client-side authentication check
- * - Suspense boundary for streaming content
- * - Responsive sidebar behavior
- * - Proper semantic HTML structure
- */
+
 export default function DashboardLayout({
   children,
 }: {
@@ -38,7 +24,7 @@ export default function DashboardLayout({
           <DashboardSidebar />
           <SidebarInset className="flex flex-col">
             <DashboardHeader />
-            {/* Main content with Suspense boundary */}
+            {}
             <Suspense fallback={<DashboardLoading />}>
               <main
                 className="flex-1 p-4 sm:p-6 lg:p-8"

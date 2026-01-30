@@ -79,7 +79,7 @@ export function ProductGrid({ data }: ProductGridProps) {
       className="py-16 lg:py-24 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden"
       id="products"
     >
-      {/* Animated Background Elements */}
+      {}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div
@@ -94,7 +94,7 @@ export function ProductGrid({ data }: ProductGridProps) {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
+          {}
           <ScrollReveal direction="up" delay={200}>
             <div className="text-center mb-12 lg:mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
@@ -107,7 +107,7 @@ export function ProductGrid({ data }: ProductGridProps) {
             </div>
           </ScrollReveal>
 
-          {/* Products Grid */}
+          {}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -132,12 +132,12 @@ export function ProductGrid({ data }: ProductGridProps) {
                   className="group"
                 >
                   <Card className="h-full border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 overflow-hidden relative">
-                    {/* Gradient Overlay */}
+                    {}
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                     />
 
-                    {/* Image Section */}
+                    {}
                     <div className="relative overflow-hidden">
                       <motion.div
                         whileHover={{ scale: 1.1 }}
@@ -152,7 +152,7 @@ export function ProductGrid({ data }: ProductGridProps) {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
-                        {/* Floating Icon */}
+                        {}
                         <motion.div
                           initial={{ scale: 0, rotate: -180 }}
                           whileInView={{ scale: 1, rotate: 0 }}
@@ -166,7 +166,7 @@ export function ProductGrid({ data }: ProductGridProps) {
                           <Icon className="h-6 w-6 text-gray-800 group-hover:scale-110 transition-transform duration-300" />
                         </motion.div>
 
-                        {/* Category Badge */}
+                        {}
                         <div className="absolute top-4 left-4">
                           <Badge
                             variant="secondary"
@@ -189,7 +189,7 @@ export function ProductGrid({ data }: ProductGridProps) {
                           </p>
                         </div>
 
-                        {/* Features */}
+                        {}
                         <div className="space-y-2">
                           {product.features.map((feature, featureIndex) => (
                             <motion.div
@@ -207,7 +207,7 @@ export function ProductGrid({ data }: ProductGridProps) {
                           ))}
                         </div>
 
-                        {/* CTA Button */}
+                        {}
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
@@ -228,10 +228,10 @@ export function ProductGrid({ data }: ProductGridProps) {
                       </div>
                     </CardContent>
 
-                    {/* Hover Effect Border */}
+                    {}
                     <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-primary/20 transition-all duration-500" />
 
-                    {/* Animated Corner Accent */}
+                    {}
                     <div className="absolute top-0 right-0 w-0 h-0 border-l-[20px] border-l-transparent border-t-[20px] border-t-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </Card>
                 </motion.div>
@@ -239,7 +239,7 @@ export function ProductGrid({ data }: ProductGridProps) {
             })}
           </motion.div>
 
-          {/* Bottom CTA */}
+          {}
           <ScrollReveal direction="up" delay={800}>
             <div className="text-center mt-12 lg:mt-16">
               <motion.div

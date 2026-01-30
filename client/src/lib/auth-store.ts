@@ -4,15 +4,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import type { Membership } from "@/lib/types";
 
-/**
- * Auth Store - Client-side auth state management
- *
- * IMPORTANT SECURITY NOTES:
- * - This stores the JWT token in sessionStorage (cleared on browser close)
- * - For production, consider using httpOnly cookies set by the backend
- * - The token is used for API calls via Authorization header
- * - Sensitive data should never be stored client-side
- */
+
 
 interface User {
   id: string;
@@ -26,7 +18,7 @@ interface AuthState {
   memberships: Membership[];
   activeTenantId: string | null;
 
-  // Actions
+  
   login: (token: string, memberships: Membership[]) => void;
   logout: () => void;
   setActiveTenant: (tenantId: string) => void;
@@ -42,10 +34,10 @@ export const useAuthStore = create<AuthState>()(
       activeTenantId: null,
 
       login: (token, memberships) => {
-        // Decode basic user info from JWT (non-sensitive)
+        
         const user = decodeUserFromToken(token);
         const activeTenantId =
-          memberships[0]?.tenantId || "default-tenant-id-for-dev"; // Fallback for dev
+          memberships[0]?.tenantId || "default-tenant-id-for-dev"; 
 
         set({
           isAuthenticated: true,
@@ -72,7 +64,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "compupay-auth",
-      storage: createJSONStorage(() => sessionStorage), // Use sessionStorage for security
+      storage: createJSONStorage(() => sessionStorage), 
       partialize: (state) => ({
         isAuthenticated: state.isAuthenticated,
         token: state.token,
@@ -84,10 +76,7 @@ export const useAuthStore = create<AuthState>()(
   ),
 );
 
-/**
- * Decode user info from JWT token (does NOT verify signature)
- * Only for reading non-sensitive data like user ID.
- */
+
 function decodeUserFromToken(token: string): User | null {
   try {
     const parts = token.split(".");
@@ -106,23 +95,17 @@ function decodeUserFromToken(token: string): User | null {
   }
 }
 
-/**
- * Hook to get current auth token (for API calls)
- */
+
 export function useAuthToken(): string | null {
   return useAuthStore((state) => state.token);
 }
 
-/**
- * Hook to check if user is authenticated
- */
+
 export function useIsAuthenticated(): boolean {
   return useAuthStore((state) => state.isAuthenticated);
 }
 
-/**
- * Hook to get active tenant ID (for API calls)
- */
+
 export function useActiveTenantId(): string | null {
   return useAuthStore((state) => state.activeTenantId);
 }

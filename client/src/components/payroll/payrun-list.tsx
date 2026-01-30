@@ -8,15 +8,7 @@ import { PayrunStatusBadge } from "@/components/payroll/payrun-status-badge";
 import type { PayRun } from "@/lib/types";
 import { usePayrunStore } from "@/stores/payrun-store";
 
-/**
- * PayrunList - Displays paginated list of payruns
- *
- * Features:
- * - Paginated data from API
- * - Status badges
- * - Click to view details
- * - Loading and error states
- */
+
 export function PayrunList() {
   const router = useRouter();
   const { page, setPage, pageSize } = usePayrunStore();

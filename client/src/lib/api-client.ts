@@ -1,9 +1,4 @@
-/**
- * API Client Configuration
- *
- * Connects directly to the backend server.
- * Auth tokens are stored in memory and passed via Authorization header.
- */
+
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
@@ -19,24 +14,16 @@ export interface ApiResponse<T> {
   error: ApiError | null;
 }
 
-/**
- * Default fetch timeout in milliseconds
- */
+
 const DEFAULT_TIMEOUT = 10000;
 
-/**
- * Maximum retry attempts for failed requests
- */
+
 const MAX_RETRIES = 3;
 
-/**
- * Base delay for exponential backoff (ms)
- */
+
 const BASE_DELAY = 1000;
 
-/**
- * Fetch with timeout support
- */
+
 async function fetchWithTimeout(
   url: string,
   options: RequestInit,
@@ -56,34 +43,21 @@ async function fetchWithTimeout(
   }
 }
 
-/**
- * Calculate exponential backoff delay
- */
+
 function getBackoffDelay(attempt: number): number {
   return Math.min(BASE_DELAY * Math.pow(2, attempt), 10000);
 }
 
-/**
- * Check if error is retryable
- */
+
 function isRetryable(status: number): boolean {
   return status === 429 || status >= 500;
 }
 
 import { useAuthStore } from "@/lib/auth-store";
 
-// ... (existing imports/constants)
 
-/**
- * API Client for making requests to the backend server
- *
- * Features:
- * - Automatic timeout handling
- * - Retry with exponential backoff
- * - Consistent error handling
- * - Authorization header support
- * - Automatic Tenant Context injection
- */
+
+
 export async function apiClient<T>(
   endpoint: string,
   options: RequestInit = {},
@@ -92,8 +66,8 @@ export async function apiClient<T>(
   const { retries = MAX_RETRIES, timeout = DEFAULT_TIMEOUT } = config;
   const url = `${API_BASE_URL}${endpoint}`;
 
-  // Get auth state from store if not provided in config
-  // This allows clean hooks without manually passing token/tenant every time
+  
+  
   const store = useAuthStore.getState();
   const token = config.token || store.token;
   const tenantId = store.activeTenantId;
@@ -102,13 +76,13 @@ export async function apiClient<T>(
     "Content-Type": "application/json",
   };
 
-  // Add Authorization header
+  
   if (token) {
     (defaultHeaders as Record<string, string>)["Authorization"] =
       `Bearer ${token}`;
   }
 
-  // Add Tenant Context header
+  
   if (tenantId) {
     (defaultHeaders as Record<string, string>)["X-Tenant-ID"] = tenantId;
   }
@@ -179,9 +153,7 @@ export async function apiClient<T>(
   };
 }
 
-/**
- * Convenience methods for common HTTP verbs
- */
+
 export const api = {
   get: <T>(endpoint: string, config?: { timeout?: number; token?: string }) =>
     apiClient<T>(endpoint, { method: "GET" }, config),
@@ -214,9 +186,7 @@ export const api = {
   ) => apiClient<T>(endpoint, { method: "DELETE" }, config),
 };
 
-/**
- * Get the API base URL (for direct backend calls)
- */
+
 export function getApiBaseUrl(): string {
   return API_BASE_URL;
 }

@@ -46,11 +46,11 @@ export default function DemoModal() {
   const isModalOpen = isOpen && type === "schedule_demo";
 
   const handleDemoSubmit = (value: z.infer<typeof demoFormSchema>) => {
-    // Here you would typically send this data to your backend
+    
     console.log(value);
     toast.success("Demo request submitted! We'll contact you shortly.");
     onClose();
-    // Reset the form after submissio
+    
     form.reset();
   };
 

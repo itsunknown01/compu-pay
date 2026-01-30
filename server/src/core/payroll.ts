@@ -1,9 +1,9 @@
 import { Decimal } from "@prisma/client/runtime/library";
 
-// We need to match Prisma Decimal type or use string/number and convert.
-// Since this is core logic, best to work with numbers/Big.js, but Prisma uses Decimal.js.
-// For simplicity in this plan, accessing Decimal from prisma client runtime or just using number for mock.
-// "Decimal" is strictly typed in Prisma.
+
+
+
+
 
 export interface CalculationResult {
   grossPay: number;
@@ -16,7 +16,7 @@ export const calculateNetPay = (
   taxStatus: string,
   overrides?: { taxRate?: number },
 ): CalculationResult => {
-  const grossPay = salary / 12; // Monthly
+  const grossPay = salary / 12; 
   let taxRate = 0;
 
   if (overrides?.taxRate !== undefined) {

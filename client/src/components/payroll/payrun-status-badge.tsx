@@ -21,16 +21,7 @@ interface PayrunStatusBadgeProps {
   status: PayRunStatus;
 }
 
-/**
- * PayrunStatusBadge - Visual indicator for payrun status
- *
- * Color coding:
- * - DRAFT: gray/secondary
- * - QUEUED: outline (processing)
- * - PREVIEWED: default blue
- * - REVIEWED: default blue
- * - APPROVED: green (success)
- */
+
 export function PayrunStatusBadge({ status }: PayrunStatusBadgeProps) {
   const config = statusConfig[status] || {
     label: status,

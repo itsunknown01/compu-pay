@@ -9,9 +9,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-/**
- * NavHeader - Sidebar header with CompuPay branding
- */
+
 export default function NavHeader() {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";

@@ -3,14 +3,11 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ComplianceRuleList } from "@/components/compliance";
 
-/**
- * CompliancePage - Compliance rules management
- * Server Component
- */
+
 export default function CompliancePage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Page Header */}
+      {}
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold tracking-tight">
@@ -28,7 +25,7 @@ export default function CompliancePage() {
         </Button>
       </div>
 
-      {/* Rules List */}
+      {}
       <ComplianceRuleList />
     </div>
   );

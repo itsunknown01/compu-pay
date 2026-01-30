@@ -32,17 +32,7 @@ interface DataTableProps<T> {
   keyExtractor: (item: T) => string;
 }
 
-/**
- * DataTable - Reusable table component with pagination
- *
- * Features:
- * - Generic column definitions
- * - Loading skeleton state
- * - Error display
- * - Empty state
- * - Pagination integration
- * - Click handler support
- */
+
 export function DataTable<T>({
   data,
   columns,
@@ -56,7 +46,7 @@ export function DataTable<T>({
   emptyMessage = "No data found",
   keyExtractor,
 }: DataTableProps<T>) {
-  // Loading state
+  
   if (loading) {
     return (
       <div className="rounded-lg border">
@@ -86,7 +76,7 @@ export function DataTable<T>({
     );
   }
 
-  // Error state
+  
   if (error) {
     return (
       <div className="rounded-lg border p-8 text-center">
@@ -95,7 +85,7 @@ export function DataTable<T>({
     );
   }
 
-  // Empty state
+  
   if (data.length === 0) {
     return (
       <div className="rounded-lg border p-8 text-center">

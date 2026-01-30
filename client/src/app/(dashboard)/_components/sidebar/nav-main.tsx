@@ -25,20 +25,12 @@ interface NavMainProps {
   navigationItems: NavigationItem[];
 }
 
-/**
- * NavMain - Main navigation menu component
- *
- * Features:
- * - Active state based on current pathname
- * - Supports nested routes (e.g., /dashboard/payruns/123 marks /dashboard/payruns as active)
- * - Accessible with proper ARIA attributes
- * - Keyboard navigable
- */
+
 export default function NavMain({ navigationItems }: NavMainProps) {
   const pathname = usePathname();
 
   const isActive = (itemPath: string) => {
-    // Exact match for dashboard home
+    
     if (itemPath === "/dashboard") {
       return pathname === "/dashboard";
     }

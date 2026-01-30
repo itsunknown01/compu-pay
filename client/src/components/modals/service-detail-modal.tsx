@@ -36,7 +36,7 @@ export default function ServiceDetailModal() {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[700px] p-0 overflow-hidden">
-        {/* Header Section */}
+        {}
         <div className="relative w-full bg-gradient-to-r from-primary/10 to-secondary/10 p-6">
           <div className="flex items-center gap-4">
             <div className="p-4 rounded-lg bg-primary/20">
@@ -70,7 +70,7 @@ export default function ServiceDetailModal() {
             {service.description}
           </DialogDescription>
 
-          {/* Progress */}
+          {}
           <div className="mb-6">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm text-muted-foreground">
@@ -143,9 +143,9 @@ export default function ServiceDetailModal() {
               <Button
                 className="w-full group relative overflow-hidden"
                 onClick={() => {
-                  // Close the current modal and open the demo modal
+                  
                   onClose();
-                  // Small timeout to ensure smooth transition between modals
+                  
                   setTimeout(() => {
                     useModal.getState().onOpen("schedule_demo");
                   }, 100);

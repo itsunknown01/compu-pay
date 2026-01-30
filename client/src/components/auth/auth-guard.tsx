@@ -9,14 +9,7 @@ interface AuthGuardProps {
   children: React.ReactNode;
 }
 
-/**
- * AuthGuard - Client-side authentication wrapper
- *
- * Checks if user is authenticated via the auth store.
- * If not authenticated, redirects to login page.
- *
- * Shows loading state while checking to prevent flash of content.
- */
+
 export function AuthGuard({ children }: AuthGuardProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +17,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   const token = useAuthStore((state) => state.token);
 
   useEffect(() => {
-    // Small delay to allow hydration of persisted state
+    
     const checkAuth = () => {
       if (!isAuthenticated || !token) {
         router.replace("/login?reason=unauthenticated");
@@ -33,12 +26,12 @@ export function AuthGuard({ children }: AuthGuardProps) {
       }
     };
 
-    // Check after a brief delay to allow store hydration
+    
     const timer = setTimeout(checkAuth, 100);
     return () => clearTimeout(timer);
   }, [isAuthenticated, token, router]);
 
-  // Show loading skeleton while checking auth
+  
   if (isLoading) {
     return (
       <div className="flex min-h-screen w-full">
@@ -66,9 +59,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   return <>{children}</>;
 }
 
-/**
- * Hook to get current session info
- */
+
 export function useSession() {
   const user = useAuthStore((state) => state.user);
   const memberships = useAuthStore((state) => state.memberships);

@@ -36,14 +36,7 @@ interface NavUserProps {
   };
 }
 
-/**
- * NavUser - User menu in sidebar footer
- *
- * Features:
- * - User info display
- * - Logout functionality (clears auth store)
- * - Account settings links
- */
+
 export default function NavUser({ user }: NavUserProps) {
   const { isMobile } = useSidebar();
   const router = useRouter();
@@ -54,7 +47,7 @@ export default function NavUser({ user }: NavUserProps) {
     try {
       setIsLoggingOut(true);
 
-      // Clear client-side auth state
+      
       logout();
 
       toast.success("Logged out successfully");
@@ -67,7 +60,7 @@ export default function NavUser({ user }: NavUserProps) {
     }
   };
 
-  // Get initials from name
+  
   const initials = user.name
     .split(" ")
     .map((n) => n[0])

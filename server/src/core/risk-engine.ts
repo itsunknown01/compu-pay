@@ -13,7 +13,7 @@ export class RiskEngine {
   ): Promise<RiskAnalysisResult> {
     console.log(`Starting Risk Analysis for PayRun: ${payRunId}`);
 
-    // 1. Fetch Data
+    
     const items = await prisma.payRunItem.findMany({
       where: { payRunId },
       include: { employee: true },
@@ -21,9 +21,9 @@ export class RiskEngine {
 
     const risks: any[] = [];
 
-    // 2. Apply Rules
+    
     for (const item of items) {
-      // Rule 1: Negative Net Pay
+      
       if (Number(item.netPay) < 0) {
         risks.push({
           tenantId,
@@ -35,7 +35,7 @@ export class RiskEngine {
         });
       }
 
-      // Rule 2: Missing Tax Status (Technically handled by schema default, but good check)
+      
       if (!item.employee.taxStatus) {
         risks.push({
           tenantId,
@@ -47,8 +47,8 @@ export class RiskEngine {
         });
       }
 
-      // Rule 3: Variance (Mock - check if Gross > 100k as a simple anomaly)
-      // Real world would compare to previous run.
+      
+      
       if (Number(item.grossPay) > 10000) {
         risks.push({
           tenantId,
@@ -61,12 +61,12 @@ export class RiskEngine {
       }
     }
 
-    // 4. AI Analysis (Phase 8)
+    
     const { InferenceEngine } = await import("./ai/inference");
 
-    // Enhance risks with AI
-    // In a real system, we might stream this or do it asynchronously
-    // For now, we'll just enrich the explanation
+    
+    
+    
     const enrichedRisks = await Promise.all(
       risks.map(async (risk) => {
         try {
@@ -78,8 +78,8 @@ export class RiskEngine {
           return {
             ...risk,
             explanation: `${risk.explanation} [AI: ${analysis.explanation}]`,
-            // We could also update severity if AI disagrees, but strictly we shouldn't trust AI over deterministic rules
-            // So we just append context.
+            
+            
           };
         } catch (e) {
           console.error("AI Analysis failed", e);
@@ -88,7 +88,7 @@ export class RiskEngine {
       }),
     );
 
-    // 5. Persist Risks
+    
     if (enrichedRisks.length > 0) {
       await prisma.risk.createMany({
         data: enrichedRisks,

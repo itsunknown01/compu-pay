@@ -16,7 +16,7 @@ export function PayrunRisksView({ payRunId }: PayrunRisksViewProps) {
 
   return (
     <div className="container max-w-5xl py-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      {/* Header */}
+      {}
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="icon" asChild>
           <Link href={`/dashboard/payruns/${payRunId}`}>
@@ -31,7 +31,7 @@ export function PayrunRisksView({ payRunId }: PayrunRisksViewProps) {
         </div>
       </div>
 
-      {/* Content */}
+      {}
       {isLoading ? (
         <div className="space-y-4">
           {[1, 2, 3].map((i) => (

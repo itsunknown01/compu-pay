@@ -14,12 +14,7 @@ import {
 } from "@/components/ui/form";
 import { useLoginForm } from "@/components/auth/use-login-form";
 
-/**
- * LoginForm - UI Component
- *
- * Handles the visual presentation of the login form using the useLoginForm hook.
- * Follows Single Responsibility Principle by delegating logic to the hook.
- */
+
 export default function LoginForm() {
   const { form, onSubmit, isLoading, showPassword, togglePasswordVisibility } =
     useLoginForm();
@@ -31,7 +26,7 @@ export default function LoginForm() {
         className="space-y-6"
         noValidate
       >
-        {/* Email Field */}
+        {}
         <FormField
           control={form.control}
           name="email"
@@ -56,7 +51,7 @@ export default function LoginForm() {
           )}
         />
 
-        {/* Password Field */}
+        {}
         <FormField
           name="password"
           control={form.control}
@@ -100,7 +95,7 @@ export default function LoginForm() {
           )}
         />
 
-        {/* Submit Button */}
+        {}
         <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
           {isLoading ? (
             <>
@@ -114,7 +109,7 @@ export default function LoginForm() {
 
         <Separator className="my-6" />
 
-        {/* Additional Options */}
+        {}
         <div className="text-center space-y-4">
           <Button
             type="button"

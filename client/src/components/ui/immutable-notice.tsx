@@ -5,12 +5,7 @@ interface ImmutableNoticeProps {
   message?: string;
 }
 
-/**
- * ImmutableNotice - Warning for locked/immutable records
- *
- * Used when a payrun is approved or processing, indicating
- * that changes cannot be made.
- */
+
 export function ImmutableNotice({
   message = "This record is locked and cannot be modified.",
 }: ImmutableNoticeProps) {

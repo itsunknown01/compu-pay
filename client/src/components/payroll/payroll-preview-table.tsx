@@ -10,25 +10,17 @@ import {
 } from "@/components/ui/table";
 
 interface PayrollPreviewTableProps {
-  data: Record<string, unknown>[]; // Replace with specific preview item type if available
+  data: Record<string, unknown>[]; 
   loading?: boolean;
 }
 
-/**
- * PayrollPreviewTable - Displays the calculated payroll preview
- *
- * Shows detailed breakdown of:
- * - Gross Pay
- * - Taxes
- * - Deductions
- * - Net Pay
- */
+
 export function PayrollPreviewTable({
   data,
   loading,
 }: PayrollPreviewTableProps) {
-  // This would typically take a list of generated payslips/preview items
-  // For this phase, we'll placeholder it as the backend preview structure is needed
+  
+  
 
   if (loading) {
     return <div className="p-4 text-center">Loading preview data...</div>;
@@ -54,7 +46,7 @@ export function PayrollPreviewTable({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {/* Placeholder rows */}
+          {}
           <TableRow>
             <TableCell>John Doe</TableCell>
             <TableCell className="text-right">$5,000.00</TableCell>

@@ -60,10 +60,10 @@ export function Footer() {
     <footer className="bg-card border-t border-border" role="contentinfo">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Main Footer Content */}
+          {}
           <div className="py-12 lg:py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
-              {/* Brand Section */}
+              {}
               <div className="lg:col-span-2">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-primary mb-4">PayrollAI</h3>
@@ -73,7 +73,7 @@ export function Footer() {
                   </p>
                 </div>
                 
-                {/* Social Links */}
+                {}
                 <div className="flex space-x-4">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
@@ -93,7 +93,7 @@ export function Footer() {
                 </div>
               </div>
 
-              {/* Footer Links */}
+              {}
               {footerLinks.map((section, index) => (
                 <div key={index} className="lg:col-span-1">
                   <h4 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
@@ -111,7 +111,7 @@ export function Footer() {
 
           <Separator />
 
-          {/* Bottom Footer */}
+          {}
           <div className="py-6 flex flex-col sm:flex-row justify-between items-center">
             <div className="text-sm text-muted-foreground mb-4 sm:mb-0">
               © {currentYear} PayrollAI. All rights reserved.

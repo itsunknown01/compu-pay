@@ -85,7 +85,7 @@ export default function FeatureSection({ data }: FeatureSectionProps) {
       className="py-16 lg:py-24 bg-muted/30 relative overflow-hidden"
       aria-labelledby="features-heading"
     >
-      {/* Animated Background Elements */}
+      {}
       <div className="absolute inset-0">
         <motion.div
           className="absolute top-20 left-10 w-32 h-32 bg-primary/5 rounded-full blur-3xl"
@@ -107,7 +107,7 @@ export default function FeatureSection({ data }: FeatureSectionProps) {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
+          {}
           <ScrollReveal direction="up" delay={200}>
             <div className="text-center mb-12 lg:mb-16">
               <motion.h2
@@ -134,7 +134,7 @@ export default function FeatureSection({ data }: FeatureSectionProps) {
             </div>
           </ScrollReveal>
 
-          {/* Features Grid */}
+          {}
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
             variants={containerVariants}
@@ -158,7 +158,7 @@ export default function FeatureSection({ data }: FeatureSectionProps) {
                     role="article"
                     aria-labelledby={`feature-${index}-title`}
                   >
-                    {/* Hover Gradient Overlay */}
+                    {}
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5"
                       initial={{ opacity: 0 }}
@@ -207,14 +207,14 @@ export default function FeatureSection({ data }: FeatureSectionProps) {
                       </CardDescription>
                     </CardContent>
 
-                    {/* Animated Border */}
+                    {}
                     <motion.div
                       className="absolute inset-0 rounded-lg border-2 border-transparent"
                       whileHover={{ borderColor: "hsl(var(--primary) / 0.2)" }}
                       transition={{ duration: 0.5 }}
                     />
 
-                    {/* Floating Particles Effect */}
+                    {}
                     <motion.div
                       className="absolute top-4 right-4 w-2 h-2 bg-primary/30 rounded-full"
                       initial={{ opacity: 0 }}

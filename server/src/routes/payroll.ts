@@ -9,14 +9,14 @@ const draftSchema = z.object({
   periodStart: z
     .string()
     .datetime()
-    .or(z.string().regex(/^\d{4}-\d{2}-\d{2}$/)), // ISO or YYYY-MM-DD
+    .or(z.string().regex(/^\d{4}-\d{2}-\d{2}$/)), 
   periodEnd: z
     .string()
     .datetime()
     .or(z.string().regex(/^\d{4}-\d{2}-\d{2}$/)),
 });
 
-// List PayRuns
+
 router.get("/", async (req: Request, res: Response) => {
   try {
     const tenantId = req.tenantId as string;
@@ -50,7 +50,7 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// Get Single PayRun
+
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -64,10 +64,10 @@ router.get("/:id", async (req: Request, res: Response) => {
 
     if (!payRun) return res.status(404).json({ error: "PayRun not found" });
 
-    // Fetch items summary if needed, but for now just return the PayRun
-    // Frontend might need items, let's verify if we need to include items logic
-    // Usually detail view fetches items separately or we include them here.
-    // For now, simple return.
+    
+    
+    
+    
     res.json(payRun);
   } catch (error) {
     console.error(error);
@@ -75,7 +75,7 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
-// Get Risks
+
 router.get("/:id/risks", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -84,7 +84,7 @@ router.get("/:id/risks", async (req: Request, res: Response) => {
     if (!tenantId)
       return res.status(400).json({ error: "Tenant context missing" });
 
-    // TODO: Restore strict type check once resolved
+    
     const risks = await prisma.risk.findMany({
       where: { payRunId: String(id) } as any,
     });
@@ -96,7 +96,7 @@ router.get("/:id/risks", async (req: Request, res: Response) => {
   }
 });
 
-// Create Draft PayRun
+
 router.post("/draft", async (req: Request, res: Response) => {
   try {
     const { periodStart, periodEnd } = draftSchema.parse(req.body);
@@ -123,7 +123,7 @@ router.post("/draft", async (req: Request, res: Response) => {
   }
 });
 
-// Post Preview (Async) - Queue Job
+
 router.post("/:id/preview", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -131,7 +131,7 @@ router.post("/:id/preview", async (req: Request, res: Response) => {
 
     if (!id) return res.status(400).json({ error: "ID required" });
 
-    // Verify ownership
+    
     const payRun = await prisma.payRun.findFirst({
       where: { id, tenantId },
     });
@@ -140,15 +140,15 @@ router.post("/:id/preview", async (req: Request, res: Response) => {
     if (payRun.status === "APPROVED")
       return res.status(400).json({ error: "Already approved" });
 
-    // Update status
+    
     await prisma.payRun.update({
       where: { id: id },
       data: { status: "QUEUED" },
     });
 
-    // Circuit Breaker for Queue
+    
     const { CircuitBreaker } = await import("../utils/circuit-breaker");
-    // Singleton for demo purposes (real world would be injected)
+    
     const breaker = new CircuitBreaker({
       failureThreshold: 3,
       resetTimeout: 5000,
@@ -168,7 +168,7 @@ router.post("/:id/preview", async (req: Request, res: Response) => {
   }
 });
 
-// Approve
+
 router.post("/:id/approve", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
@@ -187,7 +187,7 @@ router.post("/:id/approve", async (req: Request, res: Response) => {
         .json({ error: "PayRun must be previewed/reviewed first" });
     }
 
-    // Check for CRITICAL risks
+    
     const criticalRisks = await prisma.risk.count({
       where: {
         payRunId: id,
@@ -207,11 +207,11 @@ router.post("/:id/approve", async (req: Request, res: Response) => {
       data: { status: "APPROVED" },
     });
 
-    // Audit Log
+    
     const { logAction } = await import("../utils/audit");
     await logAction(
       tenantId as string,
-      // @ts-ignore - Assuming we have user context in real auth middleware
+      
       (req as any).user?.id || "system",
       "PAYROLL_APPROVE",
       "PAYRUN",

@@ -11,14 +11,7 @@ interface EmptyStateProps {
   };
 }
 
-/**
- * EmptyState - Display when no data is available
- *
- * Features:
- * - Custom icon
- * - Title and description
- * - Optional action button
- */
+
 export function EmptyState({
   icon: Icon,
   title,

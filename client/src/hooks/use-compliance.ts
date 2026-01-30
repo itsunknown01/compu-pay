@@ -10,8 +10,8 @@ import type {
 } from "@/lib/types";
 import { useComplianceStore } from "@/stores/compliance-store";
 
-// Query keys for cache management
-// Query keys for cache management
+
+
 const all = ["compliance"] as const;
 const rules = () => [...all, "rules"] as const;
 
@@ -24,9 +24,7 @@ export const complianceKeys = {
   simulations: () => [...all, "simulations"] as const,
 };
 
-/**
- * Hook to fetch paginated compliance rules
- */
+
 export function useComplianceRules() {
   const token = useAuthStore((state) => state.token);
   const { page, pageSize } = useComplianceStore();
@@ -46,9 +44,7 @@ export function useComplianceRules() {
   });
 }
 
-/**
- * Hook for creating a compliance rule
- */
+
 export function useCreateComplianceRule() {
   const token = useAuthStore((state) => state.token);
   const queryClient = useQueryClient();
@@ -74,9 +70,7 @@ export function useCreateComplianceRule() {
   });
 }
 
-/**
- * Hook for running a compliance simulation
- */
+
 export function useRunSimulation() {
   const token = useAuthStore((state) => state.token);
 
@@ -99,9 +93,7 @@ export function useRunSimulation() {
   });
 }
 
-/**
- * Hook to fetch a single compliance rule
- */
+
 export function useComplianceRule(id: string) {
   const token = useAuthStore((state) => state.token);
 
@@ -121,9 +113,7 @@ export function useComplianceRule(id: string) {
   });
 }
 
-/**
- * Hook to activate a compliance rule
- */
+
 export function useActivateRule() {
   const token = useAuthStore((state) => state.token);
   const queryClient = useQueryClient();

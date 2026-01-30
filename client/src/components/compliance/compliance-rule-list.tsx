@@ -9,9 +9,7 @@ import type { ComplianceRule } from "@/lib/types";
 
 import { useComplianceStore } from "@/stores/compliance-store";
 
-/**
- * ComplianceRuleList - Displays paginated list of compliance rules
- */
+
 export function ComplianceRuleList() {
   const router = useRouter();
   const { page, setPage, pageSize } = useComplianceStore();

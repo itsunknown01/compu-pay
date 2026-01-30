@@ -37,7 +37,7 @@ function Node3D({ position, color, size }: Node3DProps) {
           metalness={0.8}
         />
       </Sphere>
-      {/* Glow effect */}
+      {}
       <Sphere args={[size * 1.5, 32, 32]} position={position}>
         <MeshDistortMaterial
           color={color}
@@ -91,7 +91,7 @@ function Connections() {
         const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
         return (
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          
           <line key={i} {...({ geometry } as any)}>
             <lineBasicMaterial color="#3b82f6" transparent opacity={0.3} />
           </line>

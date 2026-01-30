@@ -50,7 +50,7 @@ export function AuditTable({ logs }: AuditTableProps) {
         </TableHeader>
         <TableBody>
           {logs.map((log) => {
-            // Check if this log has an associated AI trace
+            
             const traceId = log.details?.traceId as string | undefined;
 
             return (

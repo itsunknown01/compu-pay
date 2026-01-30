@@ -1,11 +1,6 @@
-/**
- * Type definitions for CompuPay API responses
- *
- * These types mirror the backend Prisma models and API responses.
- * The frontend never generates these values - they come from backend.
- */
 
-// Auth Types
+
+
 export interface User {
   id: string;
   email: string;
@@ -33,7 +28,7 @@ export interface RegisterResponse {
   userId: string;
 }
 
-// PayRun Types
+
 export type PayRunStatus =
   | "DRAFT"
   | "QUEUED"
@@ -57,7 +52,7 @@ export interface PayRunItem {
   netPay: string;
 }
 
-// Employee Types
+
 export type TaxStatus = "STANDARD" | "EXEMPT";
 
 export interface Employee {
@@ -70,23 +65,23 @@ export interface Employee {
   taxStatus: TaxStatus;
 }
 
-// Risk Types
+
 export type RiskSeverity = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
 
 export interface Risk {
   id: string;
   tenantId: string;
   payRunId: string;
-  type: string; // This acts as the category/summary
+  type: string; 
   severity: RiskSeverity;
   explanation: string;
   suggestedAction: string | null;
-  confidence: number; // AI Confidence Score (0-1)
-  metadata?: Record<string, unknown>; // Deterministic reference details
+  confidence: number; 
+  metadata?: Record<string, unknown>; 
   createdAt: string;
 }
 
-// Compliance Types
+
 export type ComplianceRuleStatus = "DRAFT" | "ACTIVE" | "ARCHIVED";
 
 export interface ComplianceRule {
@@ -115,7 +110,7 @@ export interface Simulation {
   createdAt: string;
 }
 
-// Audit Types
+
 export interface AuditLog {
   id: string;
   tenantId: string;
@@ -128,7 +123,7 @@ export interface AuditLog {
   createdAt: string;
 }
 
-// Pagination Types
+
 export interface PaginatedResponse<T> {
   data: T[];
   total: number;
@@ -137,7 +132,7 @@ export interface PaginatedResponse<T> {
   totalPages: number;
 }
 
-// Job Types (for async operations)
+
 export type JobStatus = "PENDING" | "RUNNING" | "COMPLETED" | "FAILED";
 
 export interface Job {

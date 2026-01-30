@@ -26,7 +26,7 @@ export const logAction = async (
       },
     });
   } catch (error) {
-    // Audit logging should not crash the main flow, but must be reported
+    
     console.error("FAILED TO LOG AUDIT:", error);
   }
 };

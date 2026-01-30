@@ -48,7 +48,7 @@ export default function AIInsightsModal() {
   const isModalOpen = isOpen && type === "ai_insights";
   const [isGeneratingReport, setIsGeneratingReport] = useState(false);
 
-  // Sample insights data - in a real app, this would come from an API
+  
   const insights: InsightData[] = [
     {
       title: "Overtime Trend",
@@ -105,20 +105,20 @@ export default function AIInsightsModal() {
   const handleGenerateReport = () => {
     setIsGeneratingReport(true);
 
-    // Show initial toast
+    
     toast.info("Generating comprehensive payroll report...", {
       duration: 2000,
     });
 
-    // Simulate report generation process
+    
     setTimeout(() => {
-      // Show progress toast
+      
       toast.info("Analyzing payroll data and trends...", {
         duration: 2000,
       });
 
       setTimeout(() => {
-        // Show success toast when complete
+        
         toast.success("Payroll report generated successfully!", {
           description:
             "Your comprehensive payroll report is ready for download.",
@@ -135,13 +135,13 @@ export default function AIInsightsModal() {
   };
 
   const handleDownloadReport = () => {
-    // In a real application, this would generate and download a PDF file
-    // For this demo, we'll just show a toast message
+    
+    
     toast.success("Report downloaded successfully", {
       description: "The report has been saved to your downloads folder.",
     });
 
-    // Simulate file download by creating a temporary link
+    
     const element = document.createElement("a");
     element.setAttribute("href", "data:text/plain;charset=utf-8,");
     element.setAttribute(
@@ -159,7 +159,7 @@ export default function AIInsightsModal() {
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[800px] p-0 overflow-hidden max-h-[90vh] flex flex-col">
-        {/* Header Section */}
+        {}
         <div className="relative w-full bg-gradient-to-r from-primary/10 to-secondary/10 p-6">
           <div className="flex items-center gap-4">
             <div className="p-4 rounded-lg bg-primary/20">
@@ -176,7 +176,7 @@ export default function AIInsightsModal() {
           </div>
         </div>
 
-        {/* Main Content */}
+        {}
         <ScrollArea className="flex-grow h-[calc(100vh-250px)] max-h-[600px]">
           <div className="p-6">
             <div className="mb-6">
@@ -251,7 +251,7 @@ export default function AIInsightsModal() {
               })}
             </div>
 
-            {/* Payroll Health Score */}
+            {}
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">
                 Payroll Health Score

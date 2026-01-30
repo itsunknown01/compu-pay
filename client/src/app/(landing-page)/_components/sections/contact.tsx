@@ -63,7 +63,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
+      
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       toast.success("Message sent successfully!", {
@@ -71,7 +71,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
           "Our payroll experts will get back to you within 24 hours.",
       });
 
-      // Reset form
+      
       setFormData({
         name: "",
         email: "",
@@ -98,7 +98,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
       className="py-16 lg:py-24 bg-muted/30 relative overflow-hidden"
       aria-labelledby="contact-heading"
     >
-      {/* Animated Background */}
+      {}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div
@@ -113,7 +113,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
+          {}
           <ScrollReveal direction="up" delay={200}>
             <div className="text-center mb-12 lg:mb-16">
               <h2
@@ -131,7 +131,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Contact Information */}
+            {}
             <div className="lg:col-span-1 space-y-6">
               {contactInfo.map((info, index) => {
                 const Icon = iconMap[info.icon] || Mail;
@@ -164,7 +164,7 @@ export default function ContactSection({ data }: ContactSectionProps) {
                         </div>
                       </CardContent>
 
-                      {/* Hover Effect Border */}
+                      {}
                       <div className="absolute inset-0 rounded-lg border-2 border-transparent group-hover:border-primary/20 transition-all duration-300" />
                     </Card>
                   </ScrollReveal>
@@ -172,11 +172,11 @@ export default function ContactSection({ data }: ContactSectionProps) {
               })}
             </div>
 
-            {/* Contact Form */}
+            {}
             <ScrollReveal direction="right" delay={600}>
               <div className="lg:col-span-2">
                 <Card className="border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-xl group relative overflow-hidden">
-                  {/* Animated Background Gradient */}
+                  {}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <CardHeader>

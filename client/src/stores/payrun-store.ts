@@ -12,6 +12,6 @@ export const usePayrunStore = create<PayrunState>((set) => ({
   page: 1,
   pageSize: 10,
   setPage: (page) => set({ page }),
-  setPageSize: (pageSize) => set({ pageSize, page: 1 }), // Reset to page 1 on page size change
+  setPageSize: (pageSize) => set({ pageSize, page: 1 }), 
   reset: () => set({ page: 1, pageSize: 10 }),
 }));

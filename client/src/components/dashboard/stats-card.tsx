@@ -8,7 +8,7 @@ interface StatsCardProps {
   description: string;
   icon: LucideIcon;
   loading?: boolean;
-  className?: string; // Allow custom styling injection
+  className?: string; 
 }
 
 export function StatsCard({

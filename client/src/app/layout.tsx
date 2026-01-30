@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Production-grade payroll management system with risk detection, compliance simulation, and audit tracking.",
   keywords: ["payroll", "enterprise", "compliance", "risk management", "audit"],
   authors: [{ name: "CompuPay" }],
-  robots: "noindex, nofollow", // Internal enterprise app
+  robots: "noindex, nofollow", 
 };
 
 export default function RootLayout({

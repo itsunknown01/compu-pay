@@ -50,7 +50,7 @@ export default function ProductInfoModal() {
   });
 
   const handleInfoSubmit = (value: z.infer<typeof productInfoFormSchema>) => {
-    // Here you would typically send this data to your backend
+    
     console.log({
       ...value,
       productId: product?.id,
@@ -58,7 +58,7 @@ export default function ProductInfoModal() {
     });
     toast.success(`Information request for ${product?.title} submitted! We'll contact you shortly.`);
     onClose();
-    // Reset the form after submission
+    
     form.reset();
   };
 

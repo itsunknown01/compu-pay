@@ -31,12 +31,7 @@ const messages = {
   },
 };
 
-/**
- * SessionExpiredNotice - Displayed when session validation fails
- *
- * Shows appropriate message based on reason and provides login link.
- * Client component to handle post-redirect display.
- */
+
 export function SessionExpiredNotice({
   reason = "unauthenticated",
 }: SessionExpiredNoticeProps) {

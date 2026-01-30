@@ -24,11 +24,7 @@ interface ApprovalConfirmationProps {
   children: React.ReactNode;
 }
 
-/**
- * ApprovalConfirmation - Admin confirmation dialog with typed confirmation
- *
- * Requires user to type "CONFIRM" to proceed with destructive/important actions.
- */
+
 export function ApprovalConfirmation({
   title,
   description,

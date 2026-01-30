@@ -25,11 +25,11 @@ export const authMiddleware = (
     const decoded = jwt.verify(token, process.env.JWT_SECRET || "secret");
     req.user = decoded;
 
-    // Ensure tenantId is string
+    
     if (typeof tenantId === "string") {
       req.tenantId = tenantId;
     } else {
-      // Handle array case if needed (shouldn't happen for single header usually)
+      
       req.tenantId = tenantId[0];
     }
 

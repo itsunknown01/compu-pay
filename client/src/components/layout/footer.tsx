@@ -1,13 +1,6 @@
 import Link from "next/link";
 
-/**
- * Footer - Application footer component
- *
- * Provides:
- * - Copyright information
- * - Links to legal pages (if applicable)
- * - Consistent styling across the app
- */
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 

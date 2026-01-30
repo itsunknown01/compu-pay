@@ -5,7 +5,7 @@ import { api } from "@/lib/api-client";
 import { useAuthStore } from "@/lib/auth-store";
 import type { PayRun, Risk, PaginatedResponse } from "@/lib/types";
 
-// Query keys for cache management
+
 export const payrunKeys = {
   all: ["payruns"] as const,
   lists: () => [...payrunKeys.all, "list"] as const,
@@ -40,9 +40,7 @@ export function usePayruns(customPage?: number, customPageSize?: number) {
   });
 }
 
-/**
- * Hook to fetch a single payrun by ID
- */
+
 export function usePayrun(id: string | null) {
   const token = useAuthStore((state) => state.token);
 
@@ -59,9 +57,7 @@ export function usePayrun(id: string | null) {
   });
 }
 
-/**
- * Hook to fetch risks for a payrun
- */
+
 export function usePayrunRisks(payrunId: string | null) {
   const token = useAuthStore((state) => state.token);
 
@@ -78,9 +74,7 @@ export function usePayrunRisks(payrunId: string | null) {
   });
 }
 
-/**
- * Hook for creating a draft payrun
- */
+
 export function useCreateDraftPayrun() {
   const token = useAuthStore((state) => state.token);
   const queryClient = useQueryClient();
@@ -107,9 +101,7 @@ export function useCreateDraftPayrun() {
   });
 }
 
-/**
- * Hook for triggering payrun preview (async job)
- */
+
 export function useTriggerPreview() {
   const token = useAuthStore((state) => state.token);
   const queryClient = useQueryClient();
@@ -130,9 +122,7 @@ export function useTriggerPreview() {
   });
 }
 
-/**
- * Hook for approving a payrun
- */
+
 export function useApprovePayrun() {
   const token = useAuthStore((state) => state.token);
   const queryClient = useQueryClient();

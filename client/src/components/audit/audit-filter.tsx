@@ -21,16 +21,13 @@ import { cn } from "@/lib/utils";
 
 import { useAuditStore } from "@/stores/audit-store";
 
-/**
- * AuditFilter - Filter controls for Audit Log
- * Uses reusable Zustand store for state management
- */
+
 export function AuditFilter() {
   const { filters, setFilters, reset } = useAuditStore();
 
-  // Local state for UI inputs before applying (optional, but typical for apply buttons)
-  // For simplicity and reactivity, we can also update store directly on apply.
-  // Here we keep local state to allow batching changes before "Apply".
+  
+  
+  
   const [localDate, setLocalDate] = useState<Date | undefined>(
     filters.startDate ? new Date(filters.startDate) : undefined,
   );
@@ -58,7 +55,7 @@ export function AuditFilter() {
 
   return (
     <div className="flex flex-wrap items-center gap-2 pb-4">
-      {/* Date Filter */}
+      {}
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -83,7 +80,7 @@ export function AuditFilter() {
         </PopoverContent>
       </Popover>
 
-      {/* Action Filter */}
+      {}
       <Select value={action} onValueChange={setAction}>
         <SelectTrigger className="w-[140px] h-9">
           <SelectValue placeholder="Action" />
@@ -97,7 +94,7 @@ export function AuditFilter() {
         </SelectContent>
       </Select>
 
-      {/* Resource Filter */}
+      {}
       <Select value={resource} onValueChange={setResource}>
         <SelectTrigger className="w-[140px] h-9">
           <SelectValue placeholder="Resource" />

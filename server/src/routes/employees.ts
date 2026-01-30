@@ -3,7 +3,7 @@ import prisma from "../utils/prisma";
 
 const router = Router();
 
-// List Employees
+
 router.get("/", async (req: Request, res: Response) => {
   try {
     const tenantId = req.tenantId as string;
@@ -37,7 +37,7 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
-// Get Single Employee
+
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);

@@ -20,7 +20,7 @@ export function ScrollReveal({
   delay = 0,
   direction = 'up',
   distance = 50,
-  duration = 0.6, // seconds in Framer Motion
+  duration = 0.6, 
   once = true
 }: ScrollRevealProps) {
   const ref = useRef(null);
@@ -51,7 +51,7 @@ export function ScrollReveal({
       animate={isInView ? { x: 0, y: 0, opacity: 1 } : undefined}
       transition={{
         duration,
-        delay: delay / 1000, // convert ms to s
+        delay: delay / 1000, 
         ease: 'easeOut'
       }}
     >
