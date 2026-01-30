@@ -30,8 +30,8 @@ RUN pnpm install --prod --frozen-lockfile --prefer-offline || pnpm install --pro
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
 
-# Generate Prisma Client for production
-RUN pnpm exec prisma generate
+# Copy generated Prisma Client from builder (avoids needing CLI in prod)
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 
 EXPOSE 3000
 
