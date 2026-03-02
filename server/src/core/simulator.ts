@@ -20,7 +20,7 @@ export class Simulator {
     let totalCostDelta = 0;
     let impactedCount = 0;
 
-    const results = items.map((item) => {
+    const results = items.map((item: any) => {
       const currentNet = Number(item.netPay);
 
       const simResult = calculateNetPay(

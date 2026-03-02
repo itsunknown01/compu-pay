@@ -46,7 +46,7 @@ export const getAiSummary = async (req: Request, res: Response) => {
     });
 
     let healthScore = 100;
-    allRisks.forEach((r) => {
+    allRisks.forEach((r: any) => {
       if (r.severity === "CRITICAL") healthScore -= 10;
       else if (r.severity === "HIGH") healthScore -= 5;
       else if (r.severity === "MEDIUM") healthScore -= 2;
@@ -55,7 +55,7 @@ export const getAiSummary = async (req: Request, res: Response) => {
 
     const insights: InsightItem[] = [];
 
-    activeRisks.forEach((risk) => {
+    activeRisks.forEach((risk: any) => {
       insights.push({
         id: risk.id,
         type: "risk",
@@ -67,7 +67,7 @@ export const getAiSummary = async (req: Request, res: Response) => {
       });
     });
 
-    recentRules.forEach((rule) => {
+    recentRules.forEach((rule: any) => {
       insights.push({
         id: rule.id,
         type: "compliance",
