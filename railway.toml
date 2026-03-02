@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "pnpm --filter server build"
+
+[deploy]
+startCommand = "pnpm --filter server start"
