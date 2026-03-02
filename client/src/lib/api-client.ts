@@ -1,5 +1,3 @@
-
-
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api";
 
@@ -14,15 +12,11 @@ export interface ApiResponse<T> {
   error: ApiError | null;
 }
 
-
 const DEFAULT_TIMEOUT = 10000;
-
 
 const MAX_RETRIES = 3;
 
-
 const BASE_DELAY = 1000;
-
 
 async function fetchWithTimeout(
   url: string,
@@ -43,20 +37,15 @@ async function fetchWithTimeout(
   }
 }
 
-
 function getBackoffDelay(attempt: number): number {
   return Math.min(BASE_DELAY * Math.pow(2, attempt), 10000);
 }
-
 
 function isRetryable(status: number): boolean {
   return status === 429 || status >= 500;
 }
 
 import { useAuthStore } from "@/lib/auth-store";
-
-
-
 
 export async function apiClient<T>(
   endpoint: string,
@@ -66,8 +55,6 @@ export async function apiClient<T>(
   const { retries = MAX_RETRIES, timeout = DEFAULT_TIMEOUT } = config;
   const url = `${API_BASE_URL}${endpoint}`;
 
-  
-  
   const store = useAuthStore.getState();
   const token = config.token || store.token;
   const tenantId = store.activeTenantId;
@@ -76,13 +63,11 @@ export async function apiClient<T>(
     "Content-Type": "application/json",
   };
 
-  
   if (token) {
     (defaultHeaders as Record<string, string>)["Authorization"] =
       `Bearer ${token}`;
   }
 
-  
   if (tenantId) {
     (defaultHeaders as Record<string, string>)["X-Tenant-ID"] = tenantId;
   }
@@ -121,8 +106,12 @@ export async function apiClient<T>(
         };
       }
 
-      const data = await response.json();
-      return { data, error: null };
+      const json = await response.json();
+
+      // Handle the new backend `{ message, data }` response wrapper
+      const unwrappedData = "data" in json ? json.data : json;
+
+      return { data: unwrappedData, error: null };
     } catch (err) {
       if (err instanceof Error) {
         if (err.name === "AbortError") {
@@ -152,7 +141,6 @@ export async function apiClient<T>(
     error: lastError || { error: "Request failed", status: 0 },
   };
 }
-
 
 export const api = {
   get: <T>(endpoint: string, config?: { timeout?: number; token?: string }) =>
@@ -185,7 +173,6 @@ export const api = {
     config?: { timeout?: number; token?: string },
   ) => apiClient<T>(endpoint, { method: "DELETE" }, config),
 };
-
 
 export function getApiBaseUrl(): string {
   return API_BASE_URL;

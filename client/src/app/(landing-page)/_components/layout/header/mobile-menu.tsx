@@ -1,14 +1,12 @@
 "use client";
 
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { Button } from "@/components/ui/button";
 import {
-    Sheet,
-    SheetContent,
-    SheetTitle,
-    SheetTrigger,
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
-import { LogIn, Menu } from "lucide-react";
+import { ArrowRight, Menu } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useHeader } from "./header-provider";
 import { navigationItems } from "@/constant";
@@ -18,23 +16,25 @@ export default function MobileMenu() {
   const { isMobileMenuOpen, setIsMobileMenuOpen, handleNavClick } = useHeader();
 
   return (
-    <div className="md:hidden flex items-center space-x-2">
-      <ThemeToggle />
+    <div className="lg:hidden flex items-center">
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
         <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="p-2"
+          <button
+            className="p-2 text-white/70 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/[0.06] focus:outline-none focus:ring-2 focus:ring-[var(--lp-accent)]"
             aria-label="Open mobile menu"
           >
             <Menu className="h-5 w-5" />
-          </Button>
+          </button>
         </SheetTrigger>
-        <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-          <SheetTitle className="text-left mb-6">Navigation Menu</SheetTitle>
+        <SheetContent
+          side="right"
+          className="w-[300px] sm:w-[360px] bg-[#0d0d1a] border-l border-white/[0.06]"
+        >
+          <SheetTitle className="text-left mb-8 text-white font-display text-lg">
+            Navigation
+          </SheetTitle>
           <nav
-            className="flex flex-col space-y-4"
+            className="flex flex-col gap-1"
             role="navigation"
             aria-label="Mobile navigation"
           >
@@ -48,25 +48,35 @@ export default function MobileMenu() {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className="flex items-center space-x-3 text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background rounded-sm p-2"
+                  className="flex items-center gap-3 px-3 py-3 text-sm font-medium text-white/60 hover:text-white hover:bg-white/[0.04] transition-all duration-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--lp-accent)]"
                   aria-label={`Navigate to ${item.label}`}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon className="h-4 w-4 text-[var(--lp-accent-bright)]" />
                   <span>{item.label}</span>
                 </a>
               );
             })}
-            <div className="pt-4 border-t border-border">
-              <Button
-                className="w-full"
+
+            <div className="mt-6 pt-6 border-t border-white/[0.06] space-y-3">
+              <button
+                className="w-full px-4 py-2.5 text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/[0.04] text-left"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   router.push("/login");
                 }}
               >
-                <LogIn className="mr-2 h-4 w-4" />
                 Sign In
-              </Button>
+              </button>
+              <button
+                className="w-full group inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-[var(--lp-accent)] text-white text-sm font-semibold transition-all duration-300 hover:bg-[var(--lp-accent-bright)]"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  router.push("/register");
+                }}
+              >
+                Get Started
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+              </button>
             </div>
           </nav>
         </SheetContent>

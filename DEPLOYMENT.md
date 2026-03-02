@@ -64,4 +64,11 @@ This guide explains how to deploy the **Client** and **Server** separately for p
     - `JWT_SECRET`: A strong, random string for security.
     - `NODE_ENV`: Set to `production`.
 
+## 4. Troubleshooting
+
+### `"/prisma": not found` or `COPY failed`
+
+- **Cause:** The **Root Directory** setting in your hosting provider (Railway/Vercel) is incorrect. The Dockerfile expects to run from inside the `server` folder, but it's running from the repo root.
+- **Fix:** Go to Railway project settings -> **General** -> **Root Directory** and set it to `server`.
+
 ---

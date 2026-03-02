@@ -19,11 +19,14 @@ import NavHeader from "./nav-header";
 import NavMain from "./nav-main";
 import NavUser from "./nav-user";
 
+import { useAuthStore } from "@/lib/auth-store";
 
 export default function DashboardSidebar() {
+  const { user } = useAuthStore();
+
   const data = {
     user: {
-      name: "User",
+      name: user?.email ? user.email.split("@")[0] : "Administrator",
       role: "Admin",
       avatar: "",
     },
@@ -57,6 +60,12 @@ export default function DashboardSidebar() {
         label: "Audit Log",
         icon: FileText,
         description: "Activity tracking",
+      },
+      {
+        id: "/dashboard/settings",
+        label: "Settings",
+        icon: Shield,
+        description: "Workspace & profile config",
       },
     ],
   };

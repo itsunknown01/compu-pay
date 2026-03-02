@@ -1,26 +1,44 @@
-import FeatureSection from "@/app/(landing-page)/_components/sections/feature-section";
-import HeroSection from "@/app/(landing-page)/_components/sections/hero-section";
-import ServiceSection from "@/app/(landing-page)/_components/sections/service-section";
-import ContactSection from "@/app/(landing-page)/_components/sections/contact";
-import { ProductGrid } from "./_components/sections/product-grid";
-import { HeroScrollDemo } from "./_components/sections/hero-scroll";
-import {
-  HERO_DATA,
-  FEATURES_DATA,
-  PRODUCTS_DATA,
-  SERVICES_DATA,
-  CONTACT_DATA,
-} from "@/lib/landing-data";
+import dynamic from "next/dynamic";
+import HeroCinematic from "./_components/sections/hero-cinematic";
+
+// Dynamic imports for below-fold sections to reduce initial bundle
+const ProblemSection = dynamic(
+  () => import("./_components/sections/problem-section"),
+  { ssr: true },
+);
+const IntelligenceSection = dynamic(
+  () => import("./_components/sections/intelligence-section"),
+  { ssr: true },
+);
+const ProcessSection = dynamic(
+  () => import("./_components/sections/process-section"),
+  { ssr: true },
+);
+const MetricsSection = dynamic(
+  () => import("./_components/sections/metrics-section"),
+  { ssr: true },
+);
+const SocialProofSection = dynamic(
+  () => import("./_components/sections/social-proof-section"),
+  { ssr: true },
+);
+const CtaSection = dynamic(() => import("./_components/sections/cta-section"), {
+  ssr: true,
+});
 
 export default function Home() {
   return (
     <main id="main-content" className="focus:outline-none" tabIndex={-1}>
-      <HeroSection data={HERO_DATA} />
-      <HeroScrollDemo />
-      <ProductGrid data={PRODUCTS_DATA} />
-      <FeatureSection data={FEATURES_DATA} />
-      <ServiceSection data={SERVICES_DATA} />
-      <ContactSection data={CONTACT_DATA} />
+      {/* Hero — static import for LCP */}
+      <HeroCinematic />
+
+      {/* Cinematic story flow */}
+      <ProblemSection />
+      <IntelligenceSection />
+      <ProcessSection />
+      <MetricsSection />
+      <SocialProofSection />
+      <CtaSection />
     </main>
   );
 }

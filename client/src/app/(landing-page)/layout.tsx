@@ -7,7 +7,7 @@ export default function LandingPageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="landing-page dark min-h-screen bg-[#06060e] text-white">
       <Header />
       {children}
       <Footer />

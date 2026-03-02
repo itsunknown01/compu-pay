@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { QueryProvider } from "@/providers";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -10,16 +10,30 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const syne = Syne({
+  variable: "--font-syne",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "CompuPay - Enterprise Payroll Management",
+    default: "CompuPay - AI-Powered Payroll Intelligence",
     template: "%s | CompuPay",
   },
   description:
-    "Production-grade payroll management system with risk detection, compliance simulation, and audit tracking.",
-  keywords: ["payroll", "enterprise", "compliance", "risk management", "audit"],
+    "AI-powered payroll intelligence platform. Detect payroll risks and compliance issues before they happen. Enterprise-grade accuracy, real-time analytics.",
+  keywords: [
+    "payroll",
+    "enterprise",
+    "compliance",
+    "risk management",
+    "audit",
+    "AI payroll",
+    "payroll intelligence",
+  ],
   authors: [{ name: "CompuPay" }],
-  robots: "noindex, nofollow", 
+  robots: "noindex, nofollow",
 };
 
 export default function RootLayout({
@@ -28,10 +42,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${syne.variable} font-sans antialiased`}
+      >
         <QueryProvider>
-          <ThemeProvider defaultTheme="system" storageKey="compupay-theme">
+          <ThemeProvider defaultTheme="dark" storageKey="compupay-theme">
             {children}
             <Toaster position="top-right" richColors closeButton />
           </ThemeProvider>

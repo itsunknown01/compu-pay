@@ -60,8 +60,6 @@ const worker = new Worker(
 
       await RiskEngine.analyze(payRunId, tenantId);
 
-      await RiskEngine.analyze(payRunId, tenantId);
-
       console.log(`Job completed for PayRun: ${payRunId}`);
     } catch (error) {
       console.error("Job failed:", error);

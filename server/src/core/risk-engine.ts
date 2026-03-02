@@ -1,5 +1,6 @@
 import prisma from "../utils/prisma";
 import { Prisma } from "@prisma/client";
+import { InferenceEngine } from "./ai/inference";
 
 export interface RiskAnalysisResult {
   riskCount: number;
@@ -13,7 +14,12 @@ export class RiskEngine {
   ): Promise<RiskAnalysisResult> {
     console.log(`Starting Risk Analysis for PayRun: ${payRunId}`);
 
-    
+    // Idempotency: clear old risks before generating new ones
+    await prisma.risk.deleteMany({
+      where: { payRunId },
+    });
+
+    // 1. Fetch payrun items
     const items = await prisma.payRunItem.findMany({
       where: { payRunId },
       include: { employee: true },
@@ -21,9 +27,8 @@ export class RiskEngine {
 
     const risks: any[] = [];
 
-    
+    // 2. Apply business rules
     for (const item of items) {
-      
       if (Number(item.netPay) < 0) {
         risks.push({
           tenantId,
@@ -35,7 +40,6 @@ export class RiskEngine {
         });
       }
 
-      
       if (!item.employee.taxStatus) {
         risks.push({
           tenantId,
@@ -47,8 +51,6 @@ export class RiskEngine {
         });
       }
 
-      
-      
       if (Number(item.grossPay) > 10000) {
         risks.push({
           tenantId,
@@ -61,12 +63,8 @@ export class RiskEngine {
       }
     }
 
-    
-    const { InferenceEngine } = await import("./ai/inference");
+    // 3. AI Enrichment
 
-    
-    
-    
     const enrichedRisks = await Promise.all(
       risks.map(async (risk) => {
         try {
@@ -78,8 +76,6 @@ export class RiskEngine {
           return {
             ...risk,
             explanation: `${risk.explanation} [AI: ${analysis.explanation}]`,
-            
-            
           };
         } catch (e) {
           console.error("AI Analysis failed", e);
@@ -88,7 +84,6 @@ export class RiskEngine {
       }),
     );
 
-    
     if (enrichedRisks.length > 0) {
       await prisma.risk.createMany({
         data: enrichedRisks,

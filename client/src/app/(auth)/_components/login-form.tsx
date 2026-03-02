@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { useLoginForm } from "@/components/auth/use-login-form";
 
-
 export default function LoginForm() {
   const { form, onSubmit, isLoading, showPassword, togglePasswordVisibility } =
     useLoginForm();

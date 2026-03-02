@@ -1,10 +1,7 @@
 "use client";
 
-import { LayoutDashboard, LogIn } from "lucide-react";
+import { ArrowRight, LayoutDashboard } from "lucide-react";
 import { useRouter } from "next/navigation";
-
-import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { Button } from "@/components/ui/button";
 import { useIsAuthenticated } from "@/lib/auth-store";
 
 export default function HeaderActions() {
@@ -12,26 +9,31 @@ export default function HeaderActions() {
   const isAuthenticated = useIsAuthenticated();
 
   return (
-    <div className="hidden md:flex items-center space-x-4">
-      <ThemeToggle />
+    <div className="hidden lg:flex items-center gap-3">
       {isAuthenticated ? (
-        <Button
-          size="sm"
-          className="transition-all duration-200 hover:scale-105"
+        <button
           onClick={() => router.push("/overview")}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--lp-accent)] text-white text-sm font-semibold transition-all duration-300 hover:bg-[var(--lp-accent-bright)] hover:shadow-[0_0_30px_rgba(99,102,241,0.25)]"
         >
-          <LayoutDashboard className="mr-2 h-4 w-4" />
+          <LayoutDashboard className="w-4 h-4" />
           Dashboard
-        </Button>
+        </button>
       ) : (
-        <Button
-          size="sm"
-          className="transition-all duration-200 hover:scale-105"
-          onClick={() => router.push("/login")}
-        >
-          <LogIn className="mr-2 h-4 w-4" />
-          Sign In
-        </Button>
+        <>
+          <button
+            onClick={() => router.push("/login")}
+            className="px-4 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 rounded-lg hover:bg-white/[0.04]"
+          >
+            Sign In
+          </button>
+          <button
+            onClick={() => router.push("/register")}
+            className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[var(--lp-accent)] text-white text-sm font-semibold transition-all duration-300 hover:bg-[var(--lp-accent-bright)] hover:shadow-[0_0_30px_rgba(99,102,241,0.25)]"
+          >
+            Get Started
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+          </button>
+        </>
       )}
     </div>
   );

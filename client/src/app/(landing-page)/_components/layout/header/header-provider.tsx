@@ -1,14 +1,20 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface HeaderContextState {
   isScrolled: boolean;
   setIsScrolled: (scroll: boolean) => void;
   isMobileMenuOpen: boolean;
   setIsMobileMenuOpen: (mobile: boolean) => void;
-  handleNavClick: (href: string) => void
+  handleNavClick: (href: string) => void;
 }
 
 interface HeaderProviderProps {
@@ -40,26 +46,25 @@ export default function HeaderProvider({
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
-  },[]);
+  }, []);
 
   const value = {
     isScrolled,
     setIsScrolled,
     isMobileMenuOpen,
     setIsMobileMenuOpen,
-    handleNavClick
+    handleNavClick,
   };
 
   return (
     <HeaderContext.Provider value={value}>
       <header
         className={cn(
-          `fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-            isScrolled
-              ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
-              : "bg-transparent"
-          }`,
-          className
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          isScrolled
+            ? "bg-[#06060e]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+            : "bg-transparent",
+          className,
         )}
         role="banner"
       >

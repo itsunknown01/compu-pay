@@ -1,9 +1,9 @@
 import prisma from "../utils/prisma";
 import { calculateNetPay } from "./payroll";
+import { InferenceEngine } from "./ai/inference";
 
 export class Simulator {
   static async simulate(ruleId: string, payRunId: string, tenantId: string) {
-    
     const rule = await prisma.complianceRule.findUnique({
       where: { id: ruleId },
     });
@@ -20,11 +20,9 @@ export class Simulator {
     let totalCostDelta = 0;
     let impactedCount = 0;
 
-    
     const results = items.map((item) => {
       const currentNet = Number(item.netPay);
 
-      
       const simResult = calculateNetPay(
         Number(item.employee.salaryAmount),
         item.employee.taxStatus,
@@ -47,8 +45,6 @@ export class Simulator {
       };
     });
 
-    
-    const { InferenceEngine } = await import("./ai/inference");
     let aiSummary = null;
     try {
       aiSummary = await InferenceEngine.explainImpact(
@@ -60,7 +56,6 @@ export class Simulator {
       console.error("AI Explanation failed", e);
     }
 
-    
     const simulation = await prisma.simulation.create({
       data: {
         ruleId,
