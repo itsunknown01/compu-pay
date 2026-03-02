@@ -1,6 +1,7 @@
 "use client";
 
 import { useHeader } from "./header-provider";
+import Image from "next/image";
 
 export default function HeaderIcon() {
   const { handleNavClick } = useHeader();
@@ -17,10 +18,14 @@ export default function HeaderIcon() {
         aria-label="Go to homepage"
       >
         {/* Logo mark */}
-        <div className="w-8 h-8 rounded-lg bg-[var(--lp-accent)] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-          <span className="text-white font-display font-extrabold text-sm leading-none">
-            C
-          </span>
+        <div className="w-8 h-8 rounded-lg bg-background border border-[var(--lp-accent)]/20 flex flex-col items-center justify-center transition-transform duration-300 group-hover:scale-110 overflow-hidden shrink-0">
+          <Image
+            src="/logo.png"
+            alt="CompuPay Logo"
+            width={32}
+            height={32}
+            className="object-cover"
+          />
         </div>
         <span className="font-display text-lg font-bold text-white tracking-tight">
           Compu<span className="text-[var(--lp-accent-bright)]">Pay</span>
