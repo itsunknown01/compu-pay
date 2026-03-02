@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Bell, Moon, Sun, Monitor, ShieldCheck, Mail } from "lucide-react";
+import { Bell, Moon, Sun, Monitor, ShieldCheck } from "lucide-react";
 
 export default function SettingsPage() {
   return (

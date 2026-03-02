@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import { ArrowRight, Shield, Brain, BarChart3 } from "lucide-react";
 import Link from "next/link";
 

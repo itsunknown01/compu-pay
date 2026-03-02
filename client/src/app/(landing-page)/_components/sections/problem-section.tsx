@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { gsap } from "@/lib/gsap";
 import ScrollSection from "../scroll-section";
 import AnimatedText from "../animated-text";
 import { AlertTriangle, Clock, FileWarning, DollarSign } from "lucide-react";
